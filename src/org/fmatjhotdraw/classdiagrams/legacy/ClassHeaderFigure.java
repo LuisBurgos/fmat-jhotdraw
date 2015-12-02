@@ -1,23 +1,30 @@
-package org.fmatjhotdraw.classdiagrams;
+package org.fmatjhotdraw.classdiagrams.legacy;
 
-import org.fmatjhotdraw.framework.*;
-import org.fmatjhotdraw.standard.*;
-import org.fmatjhotdraw.figures.*;
-import org.fmatjhotdraw.util.*;
+import org.fmatjhotdraw.figures.RectangleFigure;
+import org.fmatjhotdraw.figures.TextFigure;
+import org.fmatjhotdraw.framework.Figure;
+import org.fmatjhotdraw.framework.FigureEnumeration;
+import org.fmatjhotdraw.framework.HandleEnumeration;
+import org.fmatjhotdraw.standard.BoxHandleKit;
+import org.fmatjhotdraw.standard.CompositeFigure;
+import org.fmatjhotdraw.standard.HandleEnumerator;
+import org.fmatjhotdraw.util.CollectionsFactory;
+import org.fmatjhotdraw.util.Storable;
+import org.fmatjhotdraw.util.StorableInput;
+import org.fmatjhotdraw.util.StorableOutput;
 
 import java.awt.*;
-import java.io.*;
-import java.util.Iterator;
-import java.util.List;
-
+import java.io.IOException;
+import java.util.*;
 
 /**
  * Created by luisburgos on 26/11/15.
  */
-public class ClassFigureThree extends CompositeFigure {
+public class ClassHeaderFigure extends CompositeFigure {
+
     private Rectangle fDisplayBox;
 
-    private ClassHeaderFigure className;
+    private RectangleFigure className;
     private RectangleFigure classVars;
     private RectangleFigure classMethods;
 
@@ -28,7 +35,7 @@ public class ClassFigureThree extends CompositeFigure {
     private int pertFigureSerializedDataVersion = 1;
     private TextFigure classNameText;
 
-    public ClassFigureThree() {
+    public ClassHeaderFigure() {
         initialize();
     }
 
@@ -82,7 +89,7 @@ public class ClassFigureThree extends CompositeFigure {
 
     @Override
     public HandleEnumeration handles() {
-        List handles = CollectionsFactory.current().createList();
+        java.util.List handles = CollectionsFactory.current().createList();
         BoxHandleKit.addHandles(this, handles);
         return new HandleEnumerator(handles);
     }
@@ -90,20 +97,9 @@ public class ClassFigureThree extends CompositeFigure {
     private void initialize() {
         fDisplayBox = new Rectangle(0, 0, 0, 0);
 
-        className = new ClassHeaderFigure();
+        //className = new RectangleFigure();
 
-        classNameText = new TextFigure();
-        classNameText.setText("CLASE");
-        className.add(classNameText);
-
-        add(className);
-
-        classVars = new RectangleFigure();
-        add(classVars);
-
-        classMethods = new RectangleFigure();
-        add(classMethods);
-
+        //add(className);
     }
 
     private void layout() {
@@ -152,7 +148,7 @@ public class ClassFigureThree extends CompositeFigure {
         dw.writeInt(fDisplayBox.height);
     }
 
-    public void writeTasks(StorableOutput dw, List l) {
+    public void writeTasks(StorableOutput dw, java.util.List l) {
         dw.writeInt(l.size());
         Iterator iter = l.iterator();
         while (iter.hasNext()) {
@@ -179,9 +175,9 @@ public class ClassFigureThree extends CompositeFigure {
         return new Insets(cy, cx, cy, cx);
     }
 
-    public List readTasks(StorableInput dr) throws IOException {
+    public java.util.List readTasks(StorableInput dr) throws IOException {
         int size = dr.readInt();
-        List l = CollectionsFactory.current().createList(size);
+        java.util.List l = CollectionsFactory.current().createList(size);
         for (int i=0; i<size; i++) {
             l.add(dr.readStorable());
         }
@@ -198,11 +194,11 @@ public class ClassFigureThree extends CompositeFigure {
         return (int) r;
     }
 
-    public ClassHeaderFigure getClassName() {
+    public RectangleFigure getClassName() {
         return className;
     }
 
-    public void setClassName(ClassHeaderFigure className) {
+    public void setClassName(RectangleFigure className) {
         this.className = className;
     }
 
@@ -221,4 +217,5 @@ public class ClassFigureThree extends CompositeFigure {
     public void setClassMethods(RectangleFigure classMethods) {
         this.classMethods = classMethods;
     }
+
 }

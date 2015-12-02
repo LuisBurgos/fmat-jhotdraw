@@ -1,4 +1,4 @@
-package org.fmatjhotdraw.classdiagrams; /**
+package org.fmatjhotdraw.classdiagrams.legacy; /**
  * JModeller
  *
  * @version 1.0     15.01.2001

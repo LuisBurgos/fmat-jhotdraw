@@ -1,30 +1,23 @@
-package org.fmatjhotdraw.classdiagrams;
+package org.fmatjhotdraw.classdiagrams.legacy;
 
-import org.fmatjhotdraw.figures.RectangleFigure;
-import org.fmatjhotdraw.figures.TextFigure;
-import org.fmatjhotdraw.framework.Figure;
-import org.fmatjhotdraw.framework.FigureEnumeration;
-import org.fmatjhotdraw.framework.HandleEnumeration;
-import org.fmatjhotdraw.standard.BoxHandleKit;
-import org.fmatjhotdraw.standard.CompositeFigure;
-import org.fmatjhotdraw.standard.HandleEnumerator;
-import org.fmatjhotdraw.util.CollectionsFactory;
-import org.fmatjhotdraw.util.Storable;
-import org.fmatjhotdraw.util.StorableInput;
-import org.fmatjhotdraw.util.StorableOutput;
+import org.fmatjhotdraw.framework.*;
+import org.fmatjhotdraw.standard.*;
+import org.fmatjhotdraw.figures.*;
+import org.fmatjhotdraw.util.*;
 
 import java.awt.*;
-import java.io.IOException;
-import java.util.*;
+import java.io.*;
+import java.util.Iterator;
+import java.util.List;
+
 
 /**
  * Created by luisburgos on 26/11/15.
  */
-public class ClassHeaderFigure extends CompositeFigure {
-
+public class ClassFigureThree extends CompositeFigure {
     private Rectangle fDisplayBox;
 
-    private RectangleFigure className;
+    private ClassHeaderFigure className;
     private RectangleFigure classVars;
     private RectangleFigure classMethods;
 
@@ -35,7 +28,7 @@ public class ClassHeaderFigure extends CompositeFigure {
     private int pertFigureSerializedDataVersion = 1;
     private TextFigure classNameText;
 
-    public ClassHeaderFigure() {
+    public ClassFigureThree() {
         initialize();
     }
 
@@ -89,7 +82,7 @@ public class ClassHeaderFigure extends CompositeFigure {
 
     @Override
     public HandleEnumeration handles() {
-        java.util.List handles = CollectionsFactory.current().createList();
+        List handles = CollectionsFactory.current().createList();
         BoxHandleKit.addHandles(this, handles);
         return new HandleEnumerator(handles);
     }
@@ -97,9 +90,20 @@ public class ClassHeaderFigure extends CompositeFigure {
     private void initialize() {
         fDisplayBox = new Rectangle(0, 0, 0, 0);
 
-        //className = new RectangleFigure();
+        className = new ClassHeaderFigure();
 
-        //add(className);
+        classNameText = new TextFigure();
+        classNameText.setText("CLASE");
+        className.add(classNameText);
+
+        add(className);
+
+        classVars = new RectangleFigure();
+        add(classVars);
+
+        classMethods = new RectangleFigure();
+        add(classMethods);
+
     }
 
     private void layout() {
@@ -148,7 +152,7 @@ public class ClassHeaderFigure extends CompositeFigure {
         dw.writeInt(fDisplayBox.height);
     }
 
-    public void writeTasks(StorableOutput dw, java.util.List l) {
+    public void writeTasks(StorableOutput dw, List l) {
         dw.writeInt(l.size());
         Iterator iter = l.iterator();
         while (iter.hasNext()) {
@@ -175,9 +179,9 @@ public class ClassHeaderFigure extends CompositeFigure {
         return new Insets(cy, cx, cy, cx);
     }
 
-    public java.util.List readTasks(StorableInput dr) throws IOException {
+    public List readTasks(StorableInput dr) throws IOException {
         int size = dr.readInt();
-        java.util.List l = CollectionsFactory.current().createList(size);
+        List l = CollectionsFactory.current().createList(size);
         for (int i=0; i<size; i++) {
             l.add(dr.readStorable());
         }
@@ -194,11 +198,11 @@ public class ClassHeaderFigure extends CompositeFigure {
         return (int) r;
     }
 
-    public RectangleFigure getClassName() {
+    public ClassHeaderFigure getClassName() {
         return className;
     }
 
-    public void setClassName(RectangleFigure className) {
+    public void setClassName(ClassHeaderFigure className) {
         this.className = className;
     }
 
@@ -217,5 +221,4 @@ public class ClassHeaderFigure extends CompositeFigure {
     public void setClassMethods(RectangleFigure classMethods) {
         this.classMethods = classMethods;
     }
-
 }

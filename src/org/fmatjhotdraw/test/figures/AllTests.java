@@ -50,7 +50,6 @@ public class AllTests extends TestCase {
 		suite.addTest(new TestSuite(PolyLineFigureTest.class));
 		suite.addTest(new TestSuite(PolyLineHandleTest.class));
 		suite.addTest(new TestSuite(RectangleFigureTest.class));
-		suite.addTest(new TestSuite(ClassFigureDummyTest.class));
 		suite.addTest(new TestSuite(RoundRectangleFigureTest.class));
 		suite.addTest(new TestSuite(ScribbleToolTest.class));
 		suite.addTest(new TestSuite(ShortestDistanceConnectorTest.class));

@@ -1,4 +1,4 @@
-package org.fmatjhotdraw.classdiagrams;
+package org.fmatjhotdraw.classdiagrams.legacy;
 
 
 import org.fmatjhotdraw.figures.AttributeFigure;

@@ -1,4 +1,4 @@
-package org.fmatjhotdraw.classdiagrams;
+package org.fmatjhotdraw.classdiagrams.legacy;
 
 
 public class JModellerApplication {//extends MDI_DrawApplication {
