@@ -20,7 +20,7 @@ public class DemoApp extends DrawApplication {
         palette.add(createToolButton(IMAGES + "TEXT", "Text Tool", tool));
             
         tool = new CreationTool(this, new BasicClassFigure());
-        palette.add(createToolButton(IMAGES + "PERT", "Class tool", tool));
+        palette.add(createToolButton(IMAGES + "CLASS", "Class tool", tool));
     }
 
     @Override

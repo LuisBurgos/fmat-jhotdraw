@@ -15,7 +15,7 @@ public class BasicClassFigure extends GraphicalCompositeFigure {
     private RectangleFigure methodsSection;
 
     public BasicClassFigure() {
-        initializeClassArea();
+        initializeClassFigure();
     }
 
     @Override
@@ -36,7 +36,6 @@ public class BasicClassFigure extends GraphicalCompositeFigure {
         classFigureArea = new Rectangle(origin);
         classFigureArea.add(destiny);
         updateFiguresDimension();
-        
     }
 
     @Override
@@ -93,7 +92,7 @@ public class BasicClassFigure extends GraphicalCompositeFigure {
 
     }
 
-    private void initializeClassArea() {
+    private void initializeClassFigure() {
 
         titleSection = new TextAreaFigure();
         attributesSection = new RectangleFigure();
