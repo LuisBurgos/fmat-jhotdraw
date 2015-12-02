@@ -1,5 +1,8 @@
 package org.fmatjhotdraw.classdiagrams;
 
+/**
+ * Created by luisburgos on 1/12/15.
+ */
 public class ClassFigureHolder {
 
     private String className;
