@@ -23,6 +23,7 @@ import org.fmatjhotdraw.framework.Figure;
 import org.fmatjhotdraw.framework.FigureAttributeConstant;
 import org.fmatjhotdraw.framework.FigureChangeEvent;
 import org.fmatjhotdraw.framework.HandleEnumeration;
+import org.fmatjhotdraw.standard.BoxHandleKit;
 import org.fmatjhotdraw.standard.HandleEnumerator;
 import org.fmatjhotdraw.standard.NullHandle;
 import org.fmatjhotdraw.standard.RelativeLocator;
@@ -365,13 +366,16 @@ public class ClassFigure extends GraphicalCompositeFigure {
      * Return default handles on all four edges for this figure.
      */
     public HandleEnumeration handles() {
-        List handles = CollectionsFactory.current().createList(4);
+        /*List handles = CollectionsFactory.current().createList(4);
 
         handles.add(new NullHandle(getPresentationFigure(), RelativeLocator.northWest()));
         handles.add(new NullHandle(getPresentationFigure(), RelativeLocator.northEast()));
         handles.add(new NullHandle(getPresentationFigure(), RelativeLocator.southWest()));
         handles.add(new NullHandle(getPresentationFigure(), RelativeLocator.southEast()));
 
+        return new HandleEnumerator(handles);*/
+        List handles = CollectionsFactory.current().createList();
+        BoxHandleKit.addHandles(this, handles);
         return new HandleEnumerator(handles);
     }
  
