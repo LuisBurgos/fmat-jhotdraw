@@ -1,4 +1,4 @@
-package org.fmatjhotdraw.classdiagrams.modeller;
+package org.fmatjhotdraw.classdiagram.modeller;
 
 import org.fmatjhotdraw.figures.ArrowTip;
 import org.fmatjhotdraw.figures.LineConnection;

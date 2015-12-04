@@ -1,12 +1,13 @@
-package org.fmatjhotdraw.classdiagrams.modeller; /**
+package org.fmatjhotdraw.classdiagram.legacy; /**
  * JModeller
  *
  * @version 1.0     15.01.2001
- * @author Wolfram Kaiser (�2001)
+ * @author Wolfram Kaiser (©2001)
  */
 
-import java.util.*;
 import java.io.Serializable;
+import java.util.Iterator;
+import java.util.Vector;
 
 /**
  * A JModellerClass represents a class in a class diagram. It is known by its name

@@ -1,4 +1,4 @@
-package org.fmatjhotdraw.classdiagrams;
+package org.fmatjhotdraw.classdiagram;
 
 import org.fmatjhotdraw.contrib.CustomSelectionTool;
 import org.fmatjhotdraw.framework.DrawingEditor;

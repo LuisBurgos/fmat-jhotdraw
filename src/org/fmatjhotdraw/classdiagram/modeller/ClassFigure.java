@@ -1,4 +1,4 @@
-package org.fmatjhotdraw.classdiagrams.modeller; /**
+package org.fmatjhotdraw.classdiagram.modeller; /**
  * JModeller
  *
  * @version 1.0     15.01.2001
@@ -25,8 +25,6 @@ import org.fmatjhotdraw.framework.FigureChangeEvent;
 import org.fmatjhotdraw.framework.HandleEnumeration;
 import org.fmatjhotdraw.standard.BoxHandleKit;
 import org.fmatjhotdraw.standard.HandleEnumerator;
-import org.fmatjhotdraw.standard.NullHandle;
-import org.fmatjhotdraw.standard.RelativeLocator;
 import org.fmatjhotdraw.util.CollectionsFactory;
 import org.fmatjhotdraw.util.StorableInput;
 import org.fmatjhotdraw.util.StorableOutput;

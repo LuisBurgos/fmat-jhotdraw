@@ -13,7 +13,7 @@ package org.fmatjhotdraw.samples.nothing;
 
 import javax.swing.JToolBar;
 
-import org.fmatjhotdraw.classdiagrams.legacy.DelegationSelectionTool;
+import org.fmatjhotdraw.classdiagram.legacy.DelegationSelectionTool;
 import org.fmatjhotdraw.framework.*;
 import org.fmatjhotdraw.standard.*;
 import org.fmatjhotdraw.figures.*;

@@ -1,4 +1,4 @@
-package org.fmatjhotdraw.classdiagrams.legacy;
+package org.fmatjhotdraw.classdiagram.legacy;
 
 import org.fmatjhotdraw.figures.RectangleFigure;
 import org.fmatjhotdraw.figures.TextFigure;
