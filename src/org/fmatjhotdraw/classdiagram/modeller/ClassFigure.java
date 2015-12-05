@@ -16,6 +16,8 @@ import java.util.List;
 import javax.swing.AbstractAction;
 import javax.swing.JPopupMenu;
 
+import com.sun.codemodel.JClassAlreadyExistsException;
+import org.fmatjhotdraw.classdiagram.generator.JavaClassGenerator;
 import org.fmatjhotdraw.contrib.GraphicalCompositeFigure;
 import org.fmatjhotdraw.figures.RectangleFigure;
 import org.fmatjhotdraw.figures.TextFigure;
@@ -168,14 +170,27 @@ public class ClassFigure extends GraphicalCompositeFigure {
         JPopupMenu popupMenu = new JPopupMenu();
         popupMenu.add(new AbstractAction("add attribute") {
                 public void actionPerformed(ActionEvent event) {
-                    addAttribute("attribute");
+                    addAttribute("+ attribute");
                 }
             });
         popupMenu.add(new AbstractAction("add method") {
                 public void actionPerformed(ActionEvent event) {
-                    addMethod("method()");
+                    addMethod("+ method()");
                 }
             });
+
+        popupMenu.add(new AbstractAction("generate java class") {
+            public void actionPerformed(ActionEvent event) {
+                //System.out.println(getModellerClass().toString());
+                try {
+                    JavaClassGenerator.generate(getModellerClass());
+                } catch (JClassAlreadyExistsException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
         popupMenu.setLightWeightPopupEnabled(true);
         return popupMenu;

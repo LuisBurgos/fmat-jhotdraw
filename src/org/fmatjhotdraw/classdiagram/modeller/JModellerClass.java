@@ -342,4 +342,19 @@ public class JModellerClass implements Serializable {
     public Iterator getDependencies() {
         return myDependClasses.iterator();
     }
+
+    @Override
+    public String toString() {
+        String msg = "";
+        msg += myName;
+
+        msg += myAttributes.toString();
+        msg += myAssociatedClasses.toString();
+        msg += myMethods.toString();
+        msg += myDependClasses.toString();
+        msg += mySuperclasses.toString();
+
+        return msg;
+
+    }
 }
