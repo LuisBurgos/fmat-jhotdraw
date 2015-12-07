@@ -1,24 +1,16 @@
-package org.fmatjhotdraw.classdiagram.modeller; /**
- * JModeller
- *
- * @version 1.0     15.01.2001
- * @author Wolfram Kaiser (�2001)
- */
-
-import java.awt.Color;
-import java.awt.Polygon;
-import java.io.IOException;
+package org.fmatjhotdraw.classdiagram.modeller.lines;
 
 import org.fmatjhotdraw.figures.AbstractLineDecoration;
 import org.fmatjhotdraw.util.StorableInput;
 import org.fmatjhotdraw.util.StorableOutput;
 
+import java.awt.*;
+import java.io.IOException;
+
 /**
- * An AggregationDecoration draws a diamond at the starting ClassFigure
- * of a AssociationLineConnection to indicate that the starting ClassFigure
- * is an aggregration of the end ClassFigure
+ * Created by luisburgos on 6/12/15.
  */
-public class AggregationDecoration extends AbstractLineDecoration {
+public class CompositionDecoration extends AbstractLineDecoration {
 
     /**
      * Size of the diamond (measured as a diagonal line)
@@ -31,7 +23,7 @@ public class AggregationDecoration extends AbstractLineDecoration {
      * Create a new instance of AggregationDecoration with a default
      * diamond size of 20
      */
-    public AggregationDecoration() {
+    public CompositionDecoration() {
         this(20);
     }
 
@@ -41,22 +33,22 @@ public class AggregationDecoration extends AbstractLineDecoration {
      *
      * @param newSize size of the diamond
      */
-    public AggregationDecoration(int newSize) {
+    public CompositionDecoration(int newSize) {
         setSize(newSize);
-        setFillColor(Color.white);
+        setFillColor(Color.black);
         setBorderColor(Color.black);
     }
-    
-   /**
-    * Calculates the outline of an arrow tip.
-    */
+
+    /**
+     * Calculates the outline of an arrow tip.
+     */
     public Polygon outline(int x1, int y1, int x2, int y2) {
         Polygon shape = new Polygon();
 
         // calculate direction vector
         double xDir = (double)(x2 - x1);
         double yDir = (double)(y2 - y1);
-        
+
         // calculate direction vector length
         double vLength = Math.sqrt(xDir*xDir + yDir*yDir);
         if (vLength == 0.0) {
@@ -76,7 +68,7 @@ public class AggregationDecoration extends AbstractLineDecoration {
 
         // calculate vector length
         double h = Math.sqrt(getSize());
-        
+
         // calculate orthogonal vector
         double v1y = 1.0;
         double v1x = -(yDir * v1y) / xDir;
@@ -95,9 +87,9 @@ public class AggregationDecoration extends AbstractLineDecoration {
         shape.addPoint((int)p1x, (int)p1y);
         shape.addPoint((int)endX, (int)endY);
         shape.addPoint((int)p2x, (int)p2y);
-                
+
         shape.addPoint(x1, y1);
-        
+
         return shape;
 
     }
@@ -109,7 +101,7 @@ public class AggregationDecoration extends AbstractLineDecoration {
         super.write(dw);
         dw.writeInt(getSize());
     }
-    
+
     /**
      * Reads the arrow tip from a StorableInput.
      */
@@ -117,7 +109,7 @@ public class AggregationDecoration extends AbstractLineDecoration {
         super.read(dr);
         setSize(dr.readInt());
     }
-    
+
     /**
      * Set the size of the diamond. The size is measured as diagonal line.
      *
@@ -126,7 +118,7 @@ public class AggregationDecoration extends AbstractLineDecoration {
     public void setSize(int newSize) {
         mySize = newSize;
     }
-    
+
     /**
      * Return the size of the diamond. The size is measured as diagonal line.
      *

@@ -1,7 +1,7 @@
 package org.fmatjhotdraw.classdiagram.generator;
 
 import com.sun.codemodel.JClassAlreadyExistsException;
-import org.fmatjhotdraw.classdiagram.modeller.ClassFigure;
+import org.fmatjhotdraw.classdiagram.modeller.figures.ClassFigure;
 import org.fmatjhotdraw.classdiagram.modeller.JModellerClass;
 import org.fmatjhotdraw.framework.DrawingEditor;
 import org.fmatjhotdraw.framework.Figure;

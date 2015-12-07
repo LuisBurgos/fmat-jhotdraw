@@ -1,4 +1,4 @@
-package org.fmatjhotdraw.classdiagram.modeller; /**
+package org.fmatjhotdraw.classdiagram.modeller.figures; /**
  * JModeller
  *
  * @version 1.0     15.01.2001
@@ -16,8 +16,7 @@ import java.util.List;
 import javax.swing.AbstractAction;
 import javax.swing.JPopupMenu;
 
-import com.sun.codemodel.JClassAlreadyExistsException;
-import org.fmatjhotdraw.classdiagram.generator.JavaClassGenerator;
+import org.fmatjhotdraw.classdiagram.modeller.JModellerClass;
 import org.fmatjhotdraw.contrib.GraphicalCompositeFigure;
 import org.fmatjhotdraw.figures.RectangleFigure;
 import org.fmatjhotdraw.figures.TextFigure;
@@ -46,7 +45,7 @@ public class ClassFigure extends GraphicalCompositeFigure {
     /**
      * Class in the model which is represented by this figure graphically
      */
-    private JModellerClass  myClass;
+    private JModellerClass myClass;
 
     /**
      * Font used for attribute names

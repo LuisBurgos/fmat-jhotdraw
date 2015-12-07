@@ -1,5 +1,6 @@
-package org.fmatjhotdraw.classdiagram.modeller;
+package org.fmatjhotdraw.classdiagram.modeller.util;
 
+import org.fmatjhotdraw.classdiagram.modeller.figures.ClassFigure;
 import org.fmatjhotdraw.contrib.CustomSelectionTool;
 import org.fmatjhotdraw.framework.DrawingEditor;
 import org.fmatjhotdraw.framework.Figure;

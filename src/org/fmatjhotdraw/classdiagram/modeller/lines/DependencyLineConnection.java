@@ -1,4 +1,4 @@
-package org.fmatjhotdraw.classdiagram.modeller; /**
+package org.fmatjhotdraw.classdiagram.modeller.lines; /**
  * JModeller
  *
  * @version 1.0     15.01.2001
@@ -8,6 +8,8 @@ package org.fmatjhotdraw.classdiagram.modeller; /**
 import java.awt.Color;
 import java.awt.Graphics;
 
+import org.fmatjhotdraw.classdiagram.modeller.figures.ClassFigure;
+import org.fmatjhotdraw.classdiagram.modeller.JModellerClass;
 import org.fmatjhotdraw.figures.ArrowTip;
 import org.fmatjhotdraw.figures.LineConnection;
 import org.fmatjhotdraw.framework.Figure;

@@ -1,4 +1,4 @@
-package org.fmatjhotdraw.classdiagram.modeller; /**
+package org.fmatjhotdraw.classdiagram.modeller.lines; /**
  * JModeller
  *
  * @version 1.0     15.01.2001
@@ -14,6 +14,8 @@ import javax.swing.AbstractAction;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
+import org.fmatjhotdraw.classdiagram.modeller.figures.ClassFigure;
+import org.fmatjhotdraw.classdiagram.modeller.JModellerClass;
 import org.fmatjhotdraw.figures.ArrowTip;
 import org.fmatjhotdraw.figures.LineConnection;
 import org.fmatjhotdraw.framework.Figure;
@@ -42,10 +44,8 @@ public class AssociationLineConnection extends LineConnection {
      */
     public AssociationLineConnection() {
         super();
-
         setStartDecoration(null);
         setEndDecoration(null);
-    
         setAttribute(FigureAttributeConstant.POPUP_MENU, createPopupMenu());
     }
     

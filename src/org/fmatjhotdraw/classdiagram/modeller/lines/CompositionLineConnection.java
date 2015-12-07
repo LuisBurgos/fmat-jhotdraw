@@ -1,36 +1,35 @@
-package org.fmatjhotdraw.classdiagram.modeller; /**
- * JModeller
- *
- * @version 1.0     15.01.2001
- * @author Wolfram Kaiser (�2001)
- */
+package org.fmatjhotdraw.classdiagram.modeller.lines;
 
-import java.awt.Color;
-
+import org.fmatjhotdraw.classdiagram.modeller.figures.ClassFigure;
+import org.fmatjhotdraw.classdiagram.modeller.JModellerClass;
 import org.fmatjhotdraw.figures.ArrowTip;
 import org.fmatjhotdraw.figures.LineConnection;
 import org.fmatjhotdraw.framework.Figure;
 
+import java.awt.*;
+
 /**
- * An InheritanceLineConnection is a graphical representation for
- * an inheritance relationship (is-a) between two classes (represented
- * by ClassFigures).
+ * Created by luisburgos on 3/12/15.
  */
-public class InheritanceLineConnection extends LineConnection {
+public class CompositionLineConnection extends LineConnection {
 
     static final long serialVersionUID = 3140686678671889499L;
 
     /**
      * Create a new instance with a predefined arrow
      */
-    public InheritanceLineConnection() {
+    public CompositionLineConnection() {
         setStartDecoration(null);
-        ArrowTip arrow = new ArrowTip(0.35, 20.0 , 20.0);
-        arrow.setFillColor(Color.white);
-        arrow.setBorderColor(Color.black);
-        setEndDecoration(arrow);
+
+        CompositionDecoration arrowStart = new CompositionDecoration();
+        setStartDecoration(arrowStart);
+
+        ArrowTip arrowEnd = new ArrowTip(0.4, 12.0, 0.0);
+        arrowEnd.setFillColor(Color.white);
+        arrowEnd.setBorderColor(Color.black);
+        setEndDecoration(arrowEnd);
     }
-        
+
     /**
      * Hook method to plug in application behaviour into
      * a template method. This method is called when a
@@ -47,7 +46,7 @@ public class InheritanceLineConnection extends LineConnection {
 
     /**
      * Hook method to plug in application behaviour into
-     * a template method. This method is called when a 
+     * a template method. This method is called when a
      * connection between two objects has been cancelled.
      */
     protected void handleDisconnect(Figure start, Figure end) {

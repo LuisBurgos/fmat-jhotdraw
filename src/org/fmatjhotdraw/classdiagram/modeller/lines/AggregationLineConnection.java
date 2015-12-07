@@ -1,5 +1,7 @@
-package org.fmatjhotdraw.classdiagram.modeller;
+package org.fmatjhotdraw.classdiagram.modeller.lines;
 
+import org.fmatjhotdraw.classdiagram.modeller.figures.ClassFigure;
+import org.fmatjhotdraw.classdiagram.modeller.JModellerClass;
 import org.fmatjhotdraw.figures.ArrowTip;
 import org.fmatjhotdraw.figures.LineConnection;
 import org.fmatjhotdraw.framework.Figure;
@@ -18,17 +20,13 @@ public class AggregationLineConnection extends LineConnection {
      */
     public AggregationLineConnection() {
         setStartDecoration(null);
-        ArrowTip arrow = new ArrowTip(0.4, 12.0, 0.0);
-        AggregationDecoration arrowEnd = new AggregationDecoration();
-        arrow.setFillColor(Color.white);
-        arrow.setBorderColor(Color.black);
-
-
+        ArrowTip arrowEnd = new ArrowTip(0.4, 12.0, 0.0);
         arrowEnd.setFillColor(Color.white);
         arrowEnd.setBorderColor(Color.black);
-        setEndDecoration(arrow);
+        setEndDecoration(arrowEnd);
 
-        setStartDecoration(arrowEnd);
+        AggregationDecoration arrowStart = new AggregationDecoration();
+        setStartDecoration(arrowStart);
     }
 
     /**

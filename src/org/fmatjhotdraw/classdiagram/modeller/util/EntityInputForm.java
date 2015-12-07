@@ -1,4 +1,4 @@
-package org.fmatjhotdraw.classdiagram.modeller;
+package org.fmatjhotdraw.classdiagram.modeller.util;
 
 import javax.swing.*;
 import java.awt.event.*;

@@ -1,36 +1,38 @@
-package org.fmatjhotdraw.classdiagram.modeller;
+package org.fmatjhotdraw.classdiagram.modeller.lines; /**
+ * JModeller
+ *
+ * @version 1.0     15.01.2001
+ * @author Wolfram Kaiser (�2001)
+ */
 
+import java.awt.Color;
+
+import org.fmatjhotdraw.classdiagram.modeller.figures.ClassFigure;
+import org.fmatjhotdraw.classdiagram.modeller.JModellerClass;
 import org.fmatjhotdraw.figures.ArrowTip;
 import org.fmatjhotdraw.figures.LineConnection;
 import org.fmatjhotdraw.framework.Figure;
 
-import java.awt.*;
-
 /**
- * Created by luisburgos on 3/12/15.
+ * An InheritanceLineConnection is a graphical representation for
+ * an inheritance relationship (is-a) between two classes (represented
+ * by ClassFigures).
  */
-public class CompositionLineConnection extends LineConnection {
+public class InheritanceLineConnection extends LineConnection {
 
     static final long serialVersionUID = 3140686678671889499L;
 
     /**
      * Create a new instance with a predefined arrow
      */
-    public CompositionLineConnection() {
+    public InheritanceLineConnection() {
         setStartDecoration(null);
-        ArrowTip arrow = new ArrowTip(0.4, 12.0, 0.0);
-        AggregationDecoration arrowEnd = new AggregationDecoration();
+        ArrowTip arrow = new ArrowTip(0.35, 20.0 , 20.0);
         arrow.setFillColor(Color.white);
         arrow.setBorderColor(Color.black);
-
-
-        arrowEnd.setFillColor(Color.black);
-        arrowEnd.setBorderColor(Color.black);
         setEndDecoration(arrow);
-
-        setStartDecoration(arrowEnd);
     }
-
+        
     /**
      * Hook method to plug in application behaviour into
      * a template method. This method is called when a
@@ -47,7 +49,7 @@ public class CompositionLineConnection extends LineConnection {
 
     /**
      * Hook method to plug in application behaviour into
-     * a template method. This method is called when a
+     * a template method. This method is called when a 
      * connection between two objects has been cancelled.
      */
     protected void handleDisconnect(Figure start, Figure end) {
