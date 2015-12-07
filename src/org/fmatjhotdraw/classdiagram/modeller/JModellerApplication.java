@@ -65,13 +65,13 @@ public class JModellerApplication extends DrawApplication {
         palette.add(createToolButton(IMAGES+"CLASS", "New Class", tool));
 
         tool = new UndoableTool(new ConnectionTool(this, new AggregationLineConnection()));
-        palette.add(createToolButton(IMAGES+"LINE", "Aggregation Tool", tool));
+        palette.add(createToolButton(IMAGES+"AGGREGATION", "Aggregation Tool", tool));
 
         tool = new UndoableTool(new ConnectionTool(this, new CompositionLineConnection()));
-        palette.add(createToolButton(IMAGES+"LINE", "Composition Tool", tool));
+        palette.add(createToolButton(IMAGES+"COMPOSITION", "Composition Tool", tool));
 
         tool = new UndoableTool(new ConnectionTool(this, new AssociationLineConnection()));
-        palette.add(createToolButton(IMAGES+"LINE", "Association Tool", tool));
+        palette.add(createToolButton(IMAGES+"ASSOCIATION", "Association Tool", tool));
 
         tool = new UndoableTool(new ConnectionTool(this, new DependencyLineConnection()));
         palette.add(createToolButton(IMAGES+"DEPENDENCY", "Dependency Tool", tool));

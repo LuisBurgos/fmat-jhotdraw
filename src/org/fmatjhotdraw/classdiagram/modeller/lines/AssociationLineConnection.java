@@ -46,7 +46,7 @@ public class AssociationLineConnection extends LineConnection {
         super();
         setStartDecoration(null);
         setEndDecoration(null);
-        setAttribute(FigureAttributeConstant.POPUP_MENU, createPopupMenu());
+        //setAttribute(FigureAttributeConstant.POPUP_MENU, createPopupMenu());
     }
     
     /**
@@ -224,6 +224,6 @@ public class AssociationLineConnection extends LineConnection {
         // call superclass' private readObject() indirectly
         s.defaultReadObject();
         
-        setAttribute(FigureAttributeConstant.POPUP_MENU, createPopupMenu());
+        //setAttribute(FigureAttributeConstant.POPUP_MENU, createPopupMenu());
     }
 }

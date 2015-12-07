@@ -41,7 +41,7 @@ public class CompositionLineConnection extends LineConnection {
         JModellerClass startClass = ((ClassFigure)start).getModellerClass();
         JModellerClass endClass = ((ClassFigure)end).getModellerClass();
 
-        startClass.addSuperclass(endClass);
+        startClass.addAssociation(endClass);
     }
 
     /**
