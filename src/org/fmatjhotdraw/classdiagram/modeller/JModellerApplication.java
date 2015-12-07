@@ -5,8 +5,7 @@ package org.fmatjhotdraw.classdiagram.modeller; /**
  * @author Wolfram Kaiser (�2002)
  */
 
-import java.awt.Color;
-import java.awt.Point;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 
@@ -16,11 +15,10 @@ import javax.swing.JMenuBar;
 import javax.swing.JToolBar;
 
 import org.fmatjhotdraw.application.DrawApplication;
+import org.fmatjhotdraw.classdiagram.generator.GeneratorCommand;
 import org.fmatjhotdraw.figures.ConnectedTextTool;
 import org.fmatjhotdraw.figures.TextFigure;
-import org.fmatjhotdraw.framework.DrawingView;
-import org.fmatjhotdraw.framework.FigureAttributeConstant;
-import org.fmatjhotdraw.framework.Tool;
+import org.fmatjhotdraw.framework.*;
 import org.fmatjhotdraw.standard.ConnectionTool;
 import org.fmatjhotdraw.standard.CreationTool;
 import org.fmatjhotdraw.standard.ToggleGridCommand;
@@ -86,7 +84,7 @@ public class JModellerApplication extends DrawApplication {
      * @return  selection tool with special behaviour for the right mouse button
      */
     protected Tool createSelectionTool() {
-        return new ClassSelectionTool(this);
+        return new DelegationSelectionTool(this);
     }
 
     /**
@@ -100,6 +98,13 @@ public class JModellerApplication extends DrawApplication {
         mb.add(createAlignmentMenu());
         mb.add(createAttributesMenu());
         mb.add(createLookAndFeelMenu());
+        mb.add(createGenerateJavaClassesMenu());
+    }
+
+    private JMenu createGenerateJavaClassesMenu() {
+        CommandMenu menu = new CommandMenu("Class Generator");
+        menu.add(new GeneratorCommand("Generate java", this));
+        return menu;
     }
 
     /**
