@@ -1,4 +1,4 @@
-package org.fmatjhotdraw.classdiagram;
+package org.fmatjhotdraw.classdiagram.modeller;
 
 import org.fmatjhotdraw.contrib.CustomSelectionTool;
 import org.fmatjhotdraw.framework.DrawingEditor;
@@ -21,20 +21,22 @@ public class ClassSelectionTool extends CustomSelectionTool {
 
     protected void handleMouseDoubleClick(MouseEvent e, int x, int y) {
         Figure figure = drawing().findFigure(e.getX(), e.getY());
-        if ((figure != null) && (figure instanceof BasicClassFigure)) {
+        if ((figure != null) && (figure instanceof ClassFigure)) {
             showConfigMenu(figure);
         }
 
     }
 
     private void showConfigMenu(final Figure figure) {
+        System.out.println(((ClassFigure) figure).getClassNameFigure().getText());
         inputForm = new EntityInputForm.Builder(ClassFigureHolder.class)
                 .setAddAction(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent actionEvent) {
                         String className = inputForm.getTextFildByName("className").getText();
-                        ((BasicClassFigure) figure).getTitleSection().setText(className);
-                        ((BasicClassFigure) figure).update();
+                        System.out.println(className);
+                        ((ClassFigure) figure).updateClassNameFigure(className);
+                        ((ClassFigure) figure).update();
                         inputForm.dispose();
                     }
                 })

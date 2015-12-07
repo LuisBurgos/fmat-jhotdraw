@@ -1,4 +1,4 @@
-package org.fmatjhotdraw.classdiagram;
+package org.fmatjhotdraw.classdiagram.legacy;
 
 import org.fmatjhotdraw.contrib.GraphicalCompositeFigure;
 import org.fmatjhotdraw.contrib.TextAreaFigure;

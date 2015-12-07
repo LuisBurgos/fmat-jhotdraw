@@ -1,4 +1,4 @@
-package org.fmatjhotdraw.classdiagram;
+package org.fmatjhotdraw.classdiagram.modeller;
 
 /**
  * Created by luisburgos on 1/12/15.

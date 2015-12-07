@@ -453,4 +453,8 @@ public class ClassFigure extends GraphicalCompositeFigure {
 
         setAttribute(FigureAttributeConstant.POPUP_MENU, createPopupMenu());
     }
+
+    public void updateClassNameFigure(String newName) {
+        getClassNameFigure().setText(newName);
+    }
 }

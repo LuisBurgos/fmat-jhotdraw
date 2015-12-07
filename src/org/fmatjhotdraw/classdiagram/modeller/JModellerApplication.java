@@ -86,7 +86,7 @@ public class JModellerApplication extends DrawApplication {
      * @return  selection tool with special behaviour for the right mouse button
      */
     protected Tool createSelectionTool() {
-        return new DelegationSelectionTool(this);
+        return new ClassSelectionTool(this);
     }
 
     /**

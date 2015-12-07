@@ -1,6 +1,8 @@
 package org.fmatjhotdraw.classdiagram;
 
 import org.fmatjhotdraw.application.DrawApplication;
+import org.fmatjhotdraw.classdiagram.legacy.BasicClassFigure;
+import org.fmatjhotdraw.classdiagram.modeller.ClassSelectionTool;
 import org.fmatjhotdraw.figures.*;
 import org.fmatjhotdraw.framework.Tool;
 import org.fmatjhotdraw.standard.CreationTool;
