@@ -1,5 +1,6 @@
 package org.fmatjhotdraw.classdiagram.legacy;
 
+import org.fmatjhotdraw.contrib.GraphicalCompositeFigure;
 import org.fmatjhotdraw.framework.*;
 import org.fmatjhotdraw.standard.*;
 import org.fmatjhotdraw.figures.*;
@@ -17,13 +18,10 @@ import java.util.List;
 public class ClassFigureThree extends CompositeFigure {
     private Rectangle fDisplayBox;
 
-    private ClassHeaderFigure className;
+    private GraphicalCompositeFigure className;
     private RectangleFigure classVars;
     private RectangleFigure classMethods;
 
-    /*
-     * Serialization support.
-     */
     private static final long serialVersionUID = -7877776240236946511L;
     private int pertFigureSerializedDataVersion = 1;
     private TextFigure classNameText;
@@ -90,7 +88,7 @@ public class ClassFigureThree extends CompositeFigure {
     private void initialize() {
         fDisplayBox = new Rectangle(0, 0, 0, 0);
 
-        className = new ClassHeaderFigure();
+        className = new GraphicalCompositeFigure();
 
         classNameText = new TextFigure();
         classNameText.setText("CLASE");
@@ -198,11 +196,11 @@ public class ClassFigureThree extends CompositeFigure {
         return (int) r;
     }
 
-    public ClassHeaderFigure getClassName() {
+    public GraphicalCompositeFigure getClassName() {
         return className;
     }
 
-    public void setClassName(ClassHeaderFigure className) {
+    public void setClassName(GraphicalCompositeFigure className) {
         this.className = className;
     }
 
