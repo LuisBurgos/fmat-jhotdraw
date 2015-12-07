@@ -75,29 +75,30 @@ public class ClassFigure extends GraphicalCompositeFigure {
      */
     private TextFigure myClassNameFigure;
 
-  /**
-   * Default Font for classname.
-   */
-  private final static Font CLASSNAME_FONT = new Font( "Helvetica", Font.BOLD, 12 );
+    /**
+     * Default Font for classname.
+     */
+    private final static Font CLASSNAME_FONT = new Font( "Helvetica", Font.BOLD, 12 );
 
-  /**
-   * Default Font for attribut and operations.
-   */
-  private final static Font DEFAULT_FONT   = new Font( "Helvetica", Font.PLAIN, 12 );
+    /**
+     * Default Font for attribut and operations.
+     */
+    private final static Font DEFAULT_FONT   = new Font( "Helvetica", Font.PLAIN, 12 );
 
-  /**
-   * Some insets.
-   */
-  private final static Insets INSETS0400 = new Insets( 0, 4, 0, 0 );
+    /**
+     * Some insets.
+     */
+    private final static Insets INSETS0400 = new Insets( 0, 4, 0, 0 );
 
-  private final static Insets INSETS4440 = new Insets( 4, 4, 4, 0 );
+    private final static Insets INSETS4440 = new Insets( 4, 4, 4, 0 );
+    private final static Insets INSETS4444 = new Insets( 4, 4, 4, 4 );
 
 
     static final long serialVersionUID = 6098176631854387694L;
 
     /**
      * Create a new instance of ClassFigure with a RectangleFigure as presentation figure
-     */    
+     */
     public ClassFigure() {
         this(new RectangleFigure());
     }
@@ -106,7 +107,7 @@ public class ClassFigure extends GraphicalCompositeFigure {
      * Create a new instance of ClassFigure with a given presentation figure
      *
      * @param newPresentationFigure presentation figure
-     */    
+     */
     public ClassFigure(Figure newPresentationFigure) {
         super(newPresentationFigure);
     }
@@ -120,8 +121,8 @@ public class ClassFigure extends GraphicalCompositeFigure {
         removeAll();
 
         // set the fonts used to print attributes and methods
-		attributeFont = DEFAULT_FONT;
-		methodFont    = DEFAULT_FONT;
+        attributeFont = DEFAULT_FONT;
+        methodFont    = DEFAULT_FONT;
 
         // create a new Model object associated with this View figure
         setModellerClass(new JModellerClass());
@@ -134,25 +135,25 @@ public class ClassFigure extends GraphicalCompositeFigure {
                 update();
             }
         });
-    
-		getClassNameFigure().setFont(CLASSNAME_FONT);
+
+        getClassNameFigure().setFont(CLASSNAME_FONT);
         getClassNameFigure().setText(getModellerClass().getName());
-        
+
         // add the TextFigure to the Composite
         GraphicalCompositeFigure nameFigure = new GraphicalCompositeFigure(new SeparatorFigure());
         nameFigure.add(getClassNameFigure());
-		nameFigure.getLayouter().setInsets(INSETS0400);
+        nameFigure.getLayouter().setInsets(INSETS4444);
         add(nameFigure);
 
         // create a figure responsible for maintaining attributes
         setAttributesFigure(new GraphicalCompositeFigure(new SeparatorFigure()));
-		getAttributesFigure().getLayouter().setInsets(INSETS4440);
+        getAttributesFigure().getLayouter().setInsets(INSETS4444);
         // add the figure to the Composite
         add(getAttributesFigure());
 
         // create a figure responsible for maintaining methods
         setMethodsFigure(new GraphicalCompositeFigure(new SeparatorFigure()));
-		getMethodsFigure().getLayouter().setInsets(INSETS4440);
+        getMethodsFigure().getLayouter().setInsets(INSETS4444);
         // add the figure to the Composite
         add(getMethodsFigure());
 
@@ -169,15 +170,15 @@ public class ClassFigure extends GraphicalCompositeFigure {
     protected JPopupMenu createPopupMenu() {
         JPopupMenu popupMenu = new JPopupMenu();
         popupMenu.add(new AbstractAction("add attribute") {
-                public void actionPerformed(ActionEvent event) {
-                    addAttribute("+ attribute");
-                }
-            });
+            public void actionPerformed(ActionEvent event) {
+                addAttribute("+ attribute");
+            }
+        });
         popupMenu.add(new AbstractAction("add method") {
-                public void actionPerformed(ActionEvent event) {
-                    addMethod("+ method()");
-                }
-            });
+            public void actionPerformed(ActionEvent event) {
+                addMethod("+ method()");
+            }
+        });
 
         popupMenu.add(new AbstractAction("generate java class") {
             public void actionPerformed(ActionEvent event) {
@@ -240,7 +241,7 @@ public class ClassFigure extends GraphicalCompositeFigure {
     protected void setClassNameFigure(TextFigure newClassNameFigure) {
         myClassNameFigure = newClassNameFigure;
     }
-    
+
     /**
      * Return the text figure for the class name
      *
@@ -299,7 +300,7 @@ public class ClassFigure extends GraphicalCompositeFigure {
      * to hold the method name.
      *
      * @param newMethod name of the new method
-     */    
+     */
     protected void addMethod(String newMethod) {
         getModellerClass().addMethod(newMethod);
         TextFigure classFigureMethod = new TextFigure() {
@@ -355,7 +356,7 @@ public class ClassFigure extends GraphicalCompositeFigure {
     public JModellerClass getModellerClass() {
         return myClass;
     }
-    
+
     /**
      * Propagate the removeFromDrawing request up to the container.
      * A ClassFigure should not be removed just because one of its childern
@@ -391,7 +392,7 @@ public class ClassFigure extends GraphicalCompositeFigure {
         BoxHandleKit.addHandles(this, handles);
         return new HandleEnumerator(handles);
     }
- 
+
     /**
      * Test whether this figure has child figures.
      *
@@ -421,7 +422,7 @@ public class ClassFigure extends GraphicalCompositeFigure {
         setAttribute(FigureAttributeConstant.POPUP_MENU, createPopupMenu());
         update();
     }
-    
+
     /**
      * Write the figure and its contained elements to the StorableOutput.
      */
@@ -449,7 +450,7 @@ public class ClassFigure extends GraphicalCompositeFigure {
     private void readObject(ObjectInputStream s) throws ClassNotFoundException, IOException {
         // call superclass' private readObject() indirectly
         s.defaultReadObject();
-        
+
         setAttribute(FigureAttributeConstant.POPUP_MENU, createPopupMenu());
     }
 }
