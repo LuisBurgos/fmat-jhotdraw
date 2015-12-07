@@ -7,6 +7,7 @@ import org.fmatjhotdraw.classdiagram.modeller.JModellerClass;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 
 import static org.fmatjhotdraw.classdiagram.generator.JavaElement.CLASSNAME;
 
@@ -19,7 +20,7 @@ public class JavaElementReader {
     private JavaElementConverter converter;
 
     public JavaElementReader() {
-        this.elements = new HashMap<>();
+        this.elements = new LinkedHashMap<>();
         this.converter = new JavaElementConverter();
     }
 

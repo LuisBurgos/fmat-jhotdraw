@@ -170,12 +170,12 @@ public class ClassFigure extends GraphicalCompositeFigure {
         JPopupMenu popupMenu = new JPopupMenu();
         popupMenu.add(new AbstractAction("add attribute") {
             public void actionPerformed(ActionEvent event) {
-                addAttribute("+ attribute");
+                addAttribute("attribute");
             }
         });
         popupMenu.add(new AbstractAction("add method") {
             public void actionPerformed(ActionEvent event) {
-                addMethod("+ method()");
+                addMethod("method");
             }
         });
 

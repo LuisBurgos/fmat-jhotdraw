@@ -1,8 +1,6 @@
 package org.fmatjhotdraw.classdiagram.generator;
 
-import com.sun.codemodel.JClassAlreadyExistsException;
-import com.sun.codemodel.JCodeModel;
-import com.sun.codemodel.JDefinedClass;
+import com.sun.codemodel.*;
 import org.fmatjhotdraw.classdiagram.modeller.JModellerClass;
 
 import java.util.Iterator;
@@ -13,45 +11,68 @@ import java.util.Iterator;
 public class JavaElementConverter {
 
     private JCodeModel model;
+    private JDefinedClass definedClass;
+    private JMethod methodHolder;
+    private String fullyClassName;
 
     public JavaElementConverter() {
         this.model = new JCodeModel();
     }
 
     public void addClassName(Iterator classNameContainer) throws JClassAlreadyExistsException {
-
         while (classNameContainer.hasNext()) {
-            String fullyclassName = ((String)classNameContainer.next());
-            logClasElement("className", fullyclassName);
-            JDefinedClass definedClass = model._class(
-                fullyclassName
-            );
+            fullyClassName = JavaClassesGenerator.packageName;
+            fullyClassName += ((String)classNameContainer.next());
+            logClasElement("className", fullyClassName);
+            definedClass = model._class(fullyClassName);
         }
     }
 
     public void addAttributes(Iterator attributeIterator) {
         while (attributeIterator.hasNext()) {
-            logClasElement("attr", ((String)attributeIterator.next()));
+            String currentAttr = ((String)attributeIterator.next());
+            logClasElement("attr", currentAttr);
+            addAttribute(currentAttr);
         }
+    }
+
+    private void addAttribute(String currentAttr) {
+        definedClass.field(JMod.PUBLIC, int.class, currentAttr);
     }
 
     public void addMethods(Iterator methodsIterator) {
         while (methodsIterator.hasNext()) {
-            logClasElement("method", ((String)methodsIterator.next()));
-            //JMethod methodHolder = definedClass.method(0, int.class, "methodName");
-            //methodHolder.body()._return(JExpr.lit(5));
+            String currentMethod = ((String)methodsIterator.next());
+            logClasElement("method", currentMethod);
+            addMethod(currentMethod);
         }
+    }
+
+    private void addMethod(String currentMethod) {
+        methodHolder = definedClass.method(JMod.PUBLIC, int.class, currentMethod);
     }
 
     public void addDependencies(Iterator dependClasses) {
         while (dependClasses.hasNext()) {
-            logClasElement("dependency", ((JModellerClass)dependClasses.next()).getName());
+            String currentDependencie = ((JModellerClass)dependClasses.next()).getName();
+            logClasElement("dependency", currentDependencie);
+            addDependencie(currentDependencie);
         }
     }
 
-    public void addSuperclass(Iterator superclasses) {
+    private void addDependencie(String currentDependencie) {
+        addAttribute(currentDependencie);
+    }
+
+    public void addSuperclass(Iterator superclasses) throws JClassAlreadyExistsException {
         while (superclasses.hasNext()) {
-            logClasElement("super", ((JModellerClass)superclasses.next()).getName());
+            String superclassName = ((JModellerClass)superclasses.next()).getName();
+            logClasElement("super", superclassName);
+            JDefinedClass definedSuperclass = model._class(
+                    JavaClassesGenerator.packageName + superclassName,
+                    ClassType.CLASS
+            );
+            definedClass._extends(definedSuperclass);
         }
     }
 
@@ -60,7 +81,6 @@ public class JavaElementConverter {
             logClasElement("association", ((JModellerClass)associatedClasses.next()).getName());
         }
     }
-
 
     public JCodeModel getCodeModel(){
         return model;

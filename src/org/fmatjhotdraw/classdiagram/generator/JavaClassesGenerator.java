@@ -15,8 +15,8 @@ public class JavaClassesGenerator {
     private static final String DEFAULT_PACKAGE_NAME = "foo.";
     private static final String DEFAULT_DESTINATION_FOLDER = "./target/classes";
     private ArrayList<JModellerClass> modellerClasses;
-    private String packageName;
-    private String destinationFolder;
+    public static String packageName;
+    public static String destinationFolder;
 
     private JavaClassesGenerator(Builder builder) {
         this.packageName = builder.mPackageName;
@@ -43,7 +43,7 @@ public class JavaClassesGenerator {
 
     private JavaElementReader getReaderFromModellerClass(JModellerClass modellerBase) {
         JavaElementReader reader = new JavaElementReader();
-        reader.addElement(JavaElement.CLASSNAME, packageName + modellerBase.getName());
+        reader.addElement(JavaElement.CLASSNAME, modellerBase.getName());
         reader.addElement(JavaElement.ATTR, modellerBase.getAttributes());
         reader.addElement(JavaElement.METHOD, modellerBase.getMethods());
         reader.addElement(JavaElement.ASSOCIATION, modellerBase.getAssociations());
