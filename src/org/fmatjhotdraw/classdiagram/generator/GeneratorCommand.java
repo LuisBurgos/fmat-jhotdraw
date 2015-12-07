@@ -39,12 +39,10 @@ public class GeneratorCommand extends AbstractCommand {
 
     private void startClassGeneration() {
         FigureEnumeration figures = getFigures();
-        JavaClassGenerator generator = new JavaClassGenerator(
-                null,
-                null,
-                getJModellersFromFigures(figures)
-        );
-
+        JavaClassesGenerator generator;
+        generator = new JavaClassesGenerator
+                .Builder(getJModellersFromFigures(figures))
+                .build();
         try {
             generator.generate();
         } catch (JClassAlreadyExistsException e) {
@@ -52,7 +50,6 @@ public class GeneratorCommand extends AbstractCommand {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public FigureEnumeration getFigures() {
