@@ -149,11 +149,11 @@ public class ClassFigure extends GraphicalCompositeFigure {
 
     //TODO: Needs to be refactor
     public void addAttribute(String newAttribute) {
+        TextFigure classFigureAttribute;
         if(!getModellerClass().hasAttribute(newAttribute)
                 && (Objects.equals(newAttribute, DEFAULT_ATTR_NAME))){
             getModellerClass().addAttribute(newAttribute);
-
-            TextFigure classFigureAttribute = new TextFigure() {
+            classFigureAttribute = new TextFigure() {
                 public void setText(String newString) {
                     if (!getText().equals(newString)) {
                         getModellerClass().renameAttribute(getText(), newString);
@@ -162,21 +162,15 @@ public class ClassFigure extends GraphicalCompositeFigure {
                     updateAttributeFigure();
                 }
             };
-            classFigureAttribute.setText(newAttribute);
-            classFigureAttribute.setFont(attributeFont);
-            getAttributesFigure().add(classFigureAttribute);
-            updateAttributeFigure();
-            return;
-        }
 
-        if(getModellerClass().hasAttribute(newAttribute)){
-            TextFigure classFigureAttribute = new TextFigure();
-            classFigureAttribute.setText(newAttribute);
-            classFigureAttribute.setFont(attributeFont);
-            getAttributesFigure().add(classFigureAttribute);
-            updateAttributeFigure();
+        }else {
+            classFigureAttribute = new TextFigure();
         }
-
+        classFigureAttribute.setText(newAttribute);
+        classFigureAttribute.setFont(attributeFont);
+        getAttributesFigure().add(classFigureAttribute);
+        updateAttributeFigure();
+        return;
     }
 
     protected void removeAttribute(Figure oldAttribute) {
@@ -191,10 +185,11 @@ public class ClassFigure extends GraphicalCompositeFigure {
     }
 
     public void addMethod(String newMethod) {
+        TextFigure classFigureMethod;
         if(!getModellerClass().hasMethod(newMethod)
                 && (Objects.equals(newMethod, DEFAULT_METHOD_NAME))){
             getModellerClass().addMethod(newMethod);
-            TextFigure classFigureMethod = new TextFigure() {
+            classFigureMethod = new TextFigure() {
                 public void setText(String newString) {
                     if (!getText().equals(newString)) {
                         getModellerClass().renameMethod(getText(), newString);
@@ -203,19 +198,13 @@ public class ClassFigure extends GraphicalCompositeFigure {
                     updateMethodFigure();
                 }
             };
-            classFigureMethod.setText(newMethod);
-            classFigureMethod.setFont(methodFont);
-            getMethodsFigure().add(classFigureMethod);
-            updateMethodFigure();
+        }else {
+            classFigureMethod = new TextFigure();
         }
-
-        if(getModellerClass().hasMethod(newMethod)){
-            TextFigure classFigureMethod = new TextFigure();
-            classFigureMethod.setText(newMethod);
-            classFigureMethod.setFont(methodFont);
-            getMethodsFigure().add(classFigureMethod);
-            updateMethodFigure();
-        }
+        classFigureMethod.setText(newMethod);
+        classFigureMethod.setFont(methodFont);
+        getMethodsFigure().add(classFigureMethod);
+        updateMethodFigure();
     }
 
     protected void removeMethod(Figure oldMethod) {

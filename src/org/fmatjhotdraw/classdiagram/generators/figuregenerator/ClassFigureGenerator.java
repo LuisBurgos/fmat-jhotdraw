@@ -77,21 +77,21 @@ public class ClassFigureGenerator {
     public ArrayList<JModellerClass> generateModellers(){
         ArrayList<JModellerClass> ms = new ArrayList<>();
         JModellerClass modeller = new JModellerClass();
-        modeller.setName("New Class");
-        modeller.addAttribute("attribute 1");
-        modeller.addMethod("method()");
+        modeller.setName("NewClass");
+        modeller.addAttribute("attribute1");
+        modeller.addMethod("method");
 
         JModellerClass modeller1 = new JModellerClass();
-        modeller1.setName("New Class 2");
-        modeller1.addAttribute("attribute 2");
-        modeller1.addAttribute("attribute 2.2");
-        modeller1.addMethod("method2()");
+        modeller1.setName("NewClass2");
+        modeller1.addAttribute("attribute2");
+        modeller1.addAttribute("attribute3");
+        modeller1.addMethod("method2");
         //modeller1.addSuperclass(modeller);
         ms.add(modeller1);
         JModellerClass modeller2 = new JModellerClass();
-        modeller2.setName("New Class 3");
-        modeller2.addAttribute("attribute 3");
-        modeller2.addMethod("method3()");
+        modeller2.setName("NewClass3");
+        modeller2.addAttribute("attribute3");
+        modeller2.addMethod("method3");
         //modeller2.addSuperclass(modeller1);
         ms.add(modeller2);
         //modeller.addSuperclass(modeller2);
