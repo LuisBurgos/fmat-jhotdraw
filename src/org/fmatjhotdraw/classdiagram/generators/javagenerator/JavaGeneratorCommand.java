@@ -14,9 +14,9 @@ import java.util.ArrayList;
 /**
  * Created by luisburgos on 6/12/15.
  */
-public class GeneratorCommand extends AbstractCommand {
+public class JavaGeneratorCommand extends AbstractCommand {
 
-    public GeneratorCommand(String newName, DrawingEditor newDrawingEditor) {
+    public JavaGeneratorCommand(String newName, DrawingEditor newDrawingEditor) {
         super(newName, newDrawingEditor);
     }
 

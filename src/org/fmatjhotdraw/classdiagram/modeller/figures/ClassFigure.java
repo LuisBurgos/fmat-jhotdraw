@@ -179,19 +179,6 @@ public class ClassFigure extends GraphicalCompositeFigure {
             }
         });
 
-        popupMenu.add(new AbstractAction("generate java class") {
-            public void actionPerformed(ActionEvent event) {
-                //System.out.println(getModellerClass().toString());
-                /*try {
-                    JavaClassGenerator.generate(getModellerClass());
-                } catch (JClassAlreadyExistsException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }*/
-            }
-        });
-
         popupMenu.setLightWeightPopupEnabled(true);
         return popupMenu;
     }

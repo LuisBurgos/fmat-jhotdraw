@@ -15,7 +15,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JToolBar;
 
 import org.fmatjhotdraw.application.DrawApplication;
-import org.fmatjhotdraw.classdiagram.generators.javagenerator.GeneratorCommand;
+import org.fmatjhotdraw.classdiagram.generators.figuregenerator.FigureGeneratorCommand;
+import org.fmatjhotdraw.classdiagram.generators.javagenerator.JavaGeneratorCommand;
 import org.fmatjhotdraw.classdiagram.modeller.figures.ClassFigure;
 import org.fmatjhotdraw.classdiagram.modeller.lines.*;
 import org.fmatjhotdraw.classdiagram.modeller.util.DelegationSelectionTool;
@@ -101,14 +102,17 @@ public class JModellerApplication extends DrawApplication {
         mb.add(createAlignmentMenu());
         mb.add(createAttributesMenu());
         mb.add(createLookAndFeelMenu());
-        mb.add(createGenerateJavaClassesMenu());
+        mb.add(createGeneratorsMenu());
     }
 
-    private JMenu createGenerateJavaClassesMenu() {
-        CommandMenu menu = new CommandMenu("Class Generator");
-        menu.add(new GeneratorCommand("Generate java", this));
+    private JMenu createGeneratorsMenu() {
+        CommandMenu menu = new CommandMenu("Generators");
+        menu.add(new JavaGeneratorCommand("Generate java", this));
+        menu.add(new FigureGeneratorCommand("Generate class diagram", this));
         return menu;
     }
+
+
 
     /**
      * Create an attribute menu hiding some special menu entries from
