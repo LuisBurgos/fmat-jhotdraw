@@ -49,7 +49,7 @@ public class JavaElementConverter {
     }
 
     private void addMethod(String currentMethod) {
-        methodHolder = definedClass.method(JMod.PUBLIC, int.class, currentMethod);
+        methodHolder = definedClass.method(JMod.PUBLIC, void.class, currentMethod);
     }
 
     public void addDependencies(Iterator dependClasses) {

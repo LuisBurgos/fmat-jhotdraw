@@ -61,6 +61,14 @@ public class JModellerClass implements Serializable {
         return myAttributes.iterator();
     }
 
+    public Vector getVectorAttributes() {
+        return myAttributes;
+    }
+
+    public Vector getVectorMethods() {
+        return myMethods;
+    }
+
     public int getNumberOfAttributes() {
         return myAttributes.size();
     }
