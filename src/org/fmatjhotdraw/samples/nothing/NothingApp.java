@@ -13,7 +13,6 @@ package org.fmatjhotdraw.samples.nothing;
 
 import javax.swing.JToolBar;
 
-import org.fmatjhotdraw.classdiagrams.legacy.DelegationSelectionTool;
 import org.fmatjhotdraw.framework.*;
 import org.fmatjhotdraw.standard.*;
 import org.fmatjhotdraw.figures.*;
@@ -64,10 +63,6 @@ public  class NothingApp extends DrawApplication {
 		tool = new ConnectionTool(this, new ElbowConnection());
 		palette.add(createToolButton(IMAGES+"OCONN", "Elbow Connection Tool", tool));
 	}
-
-    protected Tool createSelectionTool() {
-        return new DelegationSelectionTool(this);
-    }
 
 	//-- main -----------------------------------------------------------
 
