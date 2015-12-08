@@ -15,7 +15,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JToolBar;
 
 import org.fmatjhotdraw.application.DrawApplication;
-import org.fmatjhotdraw.classdiagram.generator.GeneratorCommand;
+import org.fmatjhotdraw.classdiagram.generators.javagenerator.GeneratorCommand;
 import org.fmatjhotdraw.classdiagram.modeller.figures.ClassFigure;
 import org.fmatjhotdraw.classdiagram.modeller.lines.*;
 import org.fmatjhotdraw.classdiagram.modeller.util.DelegationSelectionTool;

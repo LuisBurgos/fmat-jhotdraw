@@ -1,9 +1,8 @@
-package org.fmatjhotdraw.classdiagram.generator;
+package org.fmatjhotdraw.classdiagram.generators.javagenerator;
 
 import com.sun.codemodel.*;
 import org.fmatjhotdraw.classdiagram.modeller.JModellerClass;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 

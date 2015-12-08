@@ -1,4 +1,4 @@
-package org.fmatjhotdraw.classdiagram.generator;
+package org.fmatjhotdraw.classdiagram.generators.javagenerator;
 
 /**
  * Created by luisburgos on 7/12/15.
