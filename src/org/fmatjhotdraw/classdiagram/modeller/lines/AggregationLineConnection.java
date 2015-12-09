@@ -59,7 +59,7 @@ public class AggregationLineConnection extends LineConnection {
 
     /**
      * Test whether an inheritance relationship between two ClassFigures can
-     * be established. An inheritance relationshop can be established if
+     * be established. An inheritance relationship can be established if
      * there is no cyclic inheritance graph. This method is called before
      * the two classes are connected in the diagram.
      *

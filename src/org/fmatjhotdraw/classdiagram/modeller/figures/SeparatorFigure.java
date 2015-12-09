@@ -1,9 +1,4 @@
-package org.fmatjhotdraw.classdiagram.modeller.figures; /**
- * JModeller
- *
- * @version 1.0     15.01.2001
- * @author Wolfram Kaiser (�2001)
- */
+package org.fmatjhotdraw.classdiagram.modeller.figures;
 
 import java.awt.Graphics;
 
@@ -12,7 +7,7 @@ import org.fmatjhotdraw.figures.LineFigure;
 /**
  * A SeparatorFigure is a similar to a LineFigure
  * but draws only a horizontal line and separates
- * from other figures beneath
+ * from other figures.
  */
 public class SeparatorFigure extends LineFigure {
 

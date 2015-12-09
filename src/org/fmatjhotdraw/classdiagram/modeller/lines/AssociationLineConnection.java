@@ -1,9 +1,4 @@
-package org.fmatjhotdraw.classdiagram.modeller.lines; /**
- * JModeller
- *
- * @version 1.0     15.01.2001
- * @author Wolfram Kaiser (�2001)
- */
+package org.fmatjhotdraw.classdiagram.modeller.lines;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -30,11 +25,6 @@ import org.fmatjhotdraw.framework.FigureChangeEvent;
  */
 public class AssociationLineConnection extends LineConnection {
 
-    /**
-     * PopupMenu for an associations which allows to switch between
-     * directed and not directed associations and associations and
-     * aggregations
-     */
     private transient JPopupMenu myPopupMenu;
 
     static final long serialVersionUID = 6492295462615980490L;

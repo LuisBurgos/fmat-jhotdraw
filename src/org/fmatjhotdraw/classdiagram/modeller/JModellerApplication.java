@@ -14,7 +14,7 @@ import org.fmatjhotdraw.classdiagram.generators.figuregenerator.FigureGeneratorC
 import org.fmatjhotdraw.classdiagram.generators.javagenerator.JavaGeneratorCommand;
 import org.fmatjhotdraw.classdiagram.modeller.figures.ClassFigure;
 import org.fmatjhotdraw.classdiagram.modeller.lines.*;
-import org.fmatjhotdraw.classdiagram.modeller.util.DelegationSelectionTool;
+import org.fmatjhotdraw.classdiagram.modeller.util.ClassDiagramSelectionTool;
 import org.fmatjhotdraw.figures.ConnectedTextTool;
 import org.fmatjhotdraw.figures.TextFigure;
 import org.fmatjhotdraw.framework.*;
@@ -61,7 +61,7 @@ public class JModellerApplication extends DrawApplication {
     }
 
     protected Tool createSelectionTool() {
-        return new DelegationSelectionTool(this);
+        return new ClassDiagramSelectionTool(this);
     }
 
     protected void createMenus(JMenuBar mb) {
@@ -116,5 +116,6 @@ public class JModellerApplication extends DrawApplication {
     public static void main(String[] args) {
         JModellerApplication window = new JModellerApplication();
         window.open();
+        System.out.println("Ordinario");
     }
 }

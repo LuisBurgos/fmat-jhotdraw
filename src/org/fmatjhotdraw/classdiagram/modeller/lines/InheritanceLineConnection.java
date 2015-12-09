@@ -1,9 +1,4 @@
-package org.fmatjhotdraw.classdiagram.modeller.lines; /**
- * JModeller
- *
- * @version 1.0     15.01.2001
- * @author Wolfram Kaiser (�2001)
- */
+package org.fmatjhotdraw.classdiagram.modeller.lines;
 
 import java.awt.Color;
 

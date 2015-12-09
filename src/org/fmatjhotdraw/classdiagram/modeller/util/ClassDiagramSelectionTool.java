@@ -1,9 +1,4 @@
-package org.fmatjhotdraw.classdiagram.modeller.util; /**
- * JModeller
- *
- * @version 1.0     15.01.2001
- * @author Wolfram Kaiser (�2001)
- */
+package org.fmatjhotdraw.classdiagram.modeller.util;
 
 import java.awt.event.MouseEvent;
 
@@ -13,19 +8,14 @@ import org.fmatjhotdraw.figures.TextTool;
 import org.fmatjhotdraw.framework.DrawingEditor;
 import org.fmatjhotdraw.framework.Figure;
 
-/**
- * Delegate mouse selection to a specific TextTool if
- * the figure selected inside a CompositeFigure is a 
- * TextFigure
- */
-public class DelegationSelectionTool extends CustomSelectionTool {
+public class ClassDiagramSelectionTool extends CustomSelectionTool {
 
     /**
      * TextTool which will be invoked at the top level container.
      */
     private TextTool myTextTool;
     
-    public DelegationSelectionTool(DrawingEditor newEditor) {
+    public ClassDiagramSelectionTool(DrawingEditor newEditor) {
         super(newEditor);
         setTextTool(new TextTool(newEditor, new TextFigure()));
     }
