@@ -1,4 +1,4 @@
 Manifest-Version: 1.0
-Main-Class: org.fmatjhotdraw.classdiagram.modeller.JModellerApplicatio
- n
+Main-Class: org.fmatjhotdraw.classdiagram.samples.InheritanceModellerA
+ pplication
 

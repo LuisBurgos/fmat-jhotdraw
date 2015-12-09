@@ -100,7 +100,7 @@ public class InheritanceModellerApplication extends DrawApplication {
     }
 
     public static void main(String[] args) {
-        ClassDiagramModellerApplication window = new ClassDiagramModellerApplication();
+        InheritanceModellerApplication window = new InheritanceModellerApplication();
         window.open();
         System.out.println("Ordinario");
     }
