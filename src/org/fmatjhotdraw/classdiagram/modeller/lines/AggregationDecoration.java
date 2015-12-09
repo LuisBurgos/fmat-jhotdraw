@@ -1,9 +1,4 @@
-package org.fmatjhotdraw.classdiagram.modeller.lines; /**
- * JModeller
- *
- * @version 1.0     15.01.2001
- * @author Wolfram Kaiser (�2001)
- */
+package org.fmatjhotdraw.classdiagram.modeller.lines;
 
 import java.awt.Color;
 import java.awt.Polygon;
@@ -16,13 +11,10 @@ import org.fmatjhotdraw.util.StorableOutput;
 /**
  * An AggregationDecoration draws a diamond at the starting ClassFigure
  * of a AssociationLineConnection to indicate that the starting ClassFigure
- * is an aggregration of the end ClassFigure
+ * is an aggregation of the end ClassFigure
  */
 public class AggregationDecoration extends AbstractLineDecoration {
 
-    /**
-     * Size of the diamond (measured as a diagonal line)
-     */
     private int     mySize;
 
     static final long serialVersionUID = 5949131894547260707L;

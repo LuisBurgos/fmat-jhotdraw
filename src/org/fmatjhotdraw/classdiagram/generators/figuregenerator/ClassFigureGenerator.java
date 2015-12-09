@@ -1,14 +1,9 @@
 package org.fmatjhotdraw.classdiagram.generators.figuregenerator;
 
-import org.fmatjhotdraw.classdiagram.modeller.JModellerClass;
+import org.fmatjhotdraw.classdiagram.modeller.ClassDiagramModel;
 import org.fmatjhotdraw.classdiagram.modeller.figures.ClassFigure;
 
-import javax.tools.JavaCompiler;
-import javax.tools.ToolProvider;
 import java.io.File;
-import java.io.InputStream;
-import java.net.URL;
-import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Vector;
@@ -36,7 +31,7 @@ public class ClassFigureGenerator {
         final ArrayList<String> fileNames = new ArrayList();
         generateCompiledClassFromFiles(files, fileNames);
 
-        final ArrayList<JModellerClass> modellers = generateModellers();
+        final ArrayList<ClassDiagramModel> modellers = generateModellers();
 
         final ArrayList<ClassFigure> generatedFigures = new ArrayList<>();
         generateFiguresFromModellers(modellers, generatedFigures);
@@ -44,11 +39,11 @@ public class ClassFigureGenerator {
         return generatedFigures;
     }
 
-    private void generateFiguresFromModellers(ArrayList<JModellerClass> modellers,
+    private void generateFiguresFromModellers(ArrayList<ClassDiagramModel> modellers,
                                               ArrayList<ClassFigure> generatedFigures) {
         ClassFigure figure;
         for(int i = 0; i < modellers.size(); i++){
-            JModellerClass modellerClass = modellers.get(i);
+            ClassDiagramModel modellerClass = modellers.get(i);
             figure = new ClassFigure();
             figure.updateModellerClass(modellerClass);
 
@@ -74,21 +69,21 @@ public class ClassFigureGenerator {
 
     }
 
-    public ArrayList<JModellerClass> generateModellers(){
-        ArrayList<JModellerClass> ms = new ArrayList<>();
-        JModellerClass modeller = new JModellerClass();
+    public ArrayList<ClassDiagramModel> generateModellers(){
+        ArrayList<ClassDiagramModel> ms = new ArrayList<>();
+        ClassDiagramModel modeller = new ClassDiagramModel();
         modeller.setName("NewClass");
         modeller.addAttribute("attribute1");
         modeller.addMethod("method");
 
-        JModellerClass modeller1 = new JModellerClass();
+        ClassDiagramModel modeller1 = new ClassDiagramModel();
         modeller1.setName("NewClass2");
         modeller1.addAttribute("attribute2");
         modeller1.addAttribute("attribute3");
         modeller1.addMethod("method2");
         //modeller1.addSuperclass(modeller);
         ms.add(modeller1);
-        JModellerClass modeller2 = new JModellerClass();
+        ClassDiagramModel modeller2 = new ClassDiagramModel();
         modeller2.setName("NewClass3");
         modeller2.addAttribute("attribute3");
         modeller2.addMethod("method3");

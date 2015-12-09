@@ -1,33 +1,34 @@
-package org.fmatjhotdraw.classdiagram.modeller;
-
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseEvent;
-
-import javax.swing.AbstractAction;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JToolBar;
+package org.fmatjhotdraw.classdiagram.samples;
 
 import org.fmatjhotdraw.application.DrawApplication;
 import org.fmatjhotdraw.classdiagram.generators.figuregenerator.FigureGeneratorCommand;
 import org.fmatjhotdraw.classdiagram.generators.javagenerator.JavaGeneratorCommand;
 import org.fmatjhotdraw.classdiagram.modeller.figures.ClassFigure;
 import org.fmatjhotdraw.classdiagram.modeller.lines.*;
-import org.fmatjhotdraw.classdiagram.modeller.util.DelegationSelectionTool;
+import org.fmatjhotdraw.classdiagram.modeller.util.ClassDiagramSelectionTool;
 import org.fmatjhotdraw.figures.ConnectedTextTool;
 import org.fmatjhotdraw.figures.TextFigure;
-import org.fmatjhotdraw.framework.*;
+import org.fmatjhotdraw.framework.DrawingView;
+import org.fmatjhotdraw.framework.FigureAttributeConstant;
+import org.fmatjhotdraw.framework.Tool;
 import org.fmatjhotdraw.standard.ConnectionTool;
 import org.fmatjhotdraw.standard.CreationTool;
 import org.fmatjhotdraw.standard.ToggleGridCommand;
 import org.fmatjhotdraw.util.CommandMenu;
 import org.fmatjhotdraw.util.UndoableTool;
 
-public class JModellerApplication extends DrawApplication {
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
 
-    public JModellerApplication() {
-        super("JModeller - Class Diagram Editor");
+/**
+ * Created by luisburgos on 9/12/15.
+ */
+public class InheritanceModellerApplication extends DrawApplication {
+
+    public InheritanceModellerApplication() {
+        super("Inheritance - Class Diagram Editor");
     }
 
     protected void createTools(JToolBar palette) {
@@ -37,48 +38,33 @@ public class JModellerApplication extends DrawApplication {
         palette.add(createToolButton(IMAGES+"ATEXT", "Label", tool));
 
         tool = new UndoableTool(new CreationTool(this, new ClassFigure()) {
-             public void mouseDrag(MouseEvent e, int x, int y) {
-                 // don't track drag events during creation: figure size is
-                 //  calculated and independent of current size
-             }
+            public void mouseDrag(MouseEvent e, int x, int y) {
+                // don't track drag events during creation: figure size is
+                //  calculated and independent of current size
+            }
         });
         palette.add(createToolButton(IMAGES+"CLASS", "New Class", tool));
-
-        tool = new UndoableTool(new ConnectionTool(this, new AggregationLineConnection()));
-        palette.add(createToolButton(IMAGES+"AGGREGATION", "Aggregation Tool", tool));
-
-        tool = new UndoableTool(new ConnectionTool(this, new CompositionLineConnection()));
-        palette.add(createToolButton(IMAGES+"COMPOSITION", "Composition Tool", tool));
-
-        tool = new UndoableTool(new ConnectionTool(this, new AssociationLineConnection()));
-        palette.add(createToolButton(IMAGES+"ASSOCIATION", "Association Tool", tool));
-
-        tool = new UndoableTool(new ConnectionTool(this, new DependencyLineConnection()));
-        palette.add(createToolButton(IMAGES+"DEPENDENCY", "Dependency Tool", tool));
 
         tool = new UndoableTool(new ConnectionTool(this, new InheritanceLineConnection()));
         palette.add(createToolButton(IMAGES+"INHERITANCE", "Inheritance Tool", tool));
     }
 
     protected Tool createSelectionTool() {
-        return new DelegationSelectionTool(this);
+        return new ClassDiagramSelectionTool(this);
     }
 
     protected void createMenus(JMenuBar mb) {
         mb.add(createFileMenu());
         mb.add(createEditMenu());
-        //mb.add(createAlignmentMenu());
-        //mb.add(createAttributesMenu());
-        //mb.add(createLookAndFeelMenu());
-        mb.add(createGeneratorsMenu());
+        //mb.add(createGeneratorsMenu());
     }
 
-    private JMenu createGeneratorsMenu() {
+    /*private JMenu createGeneratorsMenu() {
         CommandMenu menu = new CommandMenu("Generators");
         menu.add(new JavaGeneratorCommand("Generate java", this));
         menu.add(new FigureGeneratorCommand("Generate class diagram", this));
         return menu;
-    }
+    }*/
 
     protected JMenu createAttributesMenu() {
         JMenu menu = new JMenu("Attributes");
@@ -96,13 +82,13 @@ public class JModellerApplication extends DrawApplication {
     protected JMenu createFileMenu() {
         JMenu menu = super.createFileMenu();
         menu.insert(
-            new AbstractAction("New Window") {
-                public void actionPerformed(ActionEvent event) {
-                    newWindow(createDrawing());
-                }
-            }, 5);
+                new AbstractAction("New Window") {
+                    public void actionPerformed(ActionEvent event) {
+                        newWindow(createDrawing());
+                    }
+                }, 5);
 
-		menu.insertSeparator( 6 );
+        menu.insertSeparator( 6 );
 
         return menu;
     }
@@ -114,7 +100,8 @@ public class JModellerApplication extends DrawApplication {
     }
 
     public static void main(String[] args) {
-        JModellerApplication window = new JModellerApplication();
+        InheritanceModellerApplication window = new InheritanceModellerApplication();
         window.open();
+        System.out.println("Ordinario");
     }
 }

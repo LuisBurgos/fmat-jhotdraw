@@ -2,7 +2,7 @@ package org.fmatjhotdraw.classdiagram.generators.javagenerator;
 
 import com.sun.codemodel.JClassAlreadyExistsException;
 import org.fmatjhotdraw.classdiagram.modeller.figures.ClassFigure;
-import org.fmatjhotdraw.classdiagram.modeller.JModellerClass;
+import org.fmatjhotdraw.classdiagram.modeller.ClassDiagramModel;
 import org.fmatjhotdraw.framework.DrawingEditor;
 import org.fmatjhotdraw.framework.Figure;
 import org.fmatjhotdraw.framework.FigureEnumeration;
@@ -26,8 +26,8 @@ public class JavaGeneratorCommand extends AbstractCommand {
         startClassGeneration();
     }
 
-    private ArrayList<JModellerClass> getJModellersFromFigures(FigureEnumeration figures) {
-        ArrayList<JModellerClass> modellerClasses = new ArrayList<>();
+    private ArrayList<ClassDiagramModel> getJModellersFromFigures(FigureEnumeration figures) {
+        ArrayList<ClassDiagramModel> modellerClasses = new ArrayList<>();
         while (figures.hasNextFigure()) {
             Figure f = figures.nextFigure();
             if(f instanceof ClassFigure){

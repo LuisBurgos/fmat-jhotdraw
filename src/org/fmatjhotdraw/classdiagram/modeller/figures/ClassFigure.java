@@ -12,7 +12,7 @@ import java.util.Objects;
 import javax.swing.AbstractAction;
 import javax.swing.JPopupMenu;
 
-import org.fmatjhotdraw.classdiagram.modeller.JModellerClass;
+import org.fmatjhotdraw.classdiagram.modeller.ClassDiagramModel;
 import org.fmatjhotdraw.contrib.GraphicalCompositeFigure;
 import org.fmatjhotdraw.figures.RectangleFigure;
 import org.fmatjhotdraw.figures.TextFigure;
@@ -30,7 +30,7 @@ public class ClassFigure extends GraphicalCompositeFigure {
 
     private final String DEFAULT_METHOD_NAME = "method";
     private final String DEFAULT_ATTR_NAME = "attribute";
-    private JModellerClass myClass;
+    private ClassDiagramModel myClass;
     private Font attributeFont;
     private Font methodFont;
     private GraphicalCompositeFigure myAttributesFigure;
@@ -67,7 +67,7 @@ public class ClassFigure extends GraphicalCompositeFigure {
 
 
         if (getModellerClass() == null) {
-            setModellerClass(new JModellerClass());
+            setModellerClass(new ClassDiagramModel());
 
         }
 
@@ -218,15 +218,15 @@ public class ClassFigure extends GraphicalCompositeFigure {
         update();
     }
 
-    protected void setModellerClass(JModellerClass newClass) {
+    protected void setModellerClass(ClassDiagramModel newClass) {
         myClass = newClass;
     }
 
-    public JModellerClass getModellerClass() {
+    public ClassDiagramModel getModellerClass() {
         return myClass;
     }
 
-    public void updateModellerClass(JModellerClass newModeller){
+    public void updateModellerClass(ClassDiagramModel newModeller){
         setModellerClass(newModeller);
         //initialize();
         updateComponents();
