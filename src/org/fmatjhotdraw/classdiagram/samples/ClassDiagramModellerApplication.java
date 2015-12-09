@@ -1,4 +1,4 @@
-package org.fmatjhotdraw.classdiagram.modeller;
+package org.fmatjhotdraw.classdiagram.samples;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -24,10 +24,10 @@ import org.fmatjhotdraw.standard.ToggleGridCommand;
 import org.fmatjhotdraw.util.CommandMenu;
 import org.fmatjhotdraw.util.UndoableTool;
 
-public class JModellerApplication extends DrawApplication {
+public class ClassDiagramModellerApplication extends DrawApplication {
 
-    public JModellerApplication() {
-        super("JModeller - Class Diagram Editor");
+    public ClassDiagramModellerApplication() {
+        super("Class Diagram Editor");
     }
 
     protected void createTools(JToolBar palette) {
@@ -114,8 +114,7 @@ public class JModellerApplication extends DrawApplication {
     }
 
     public static void main(String[] args) {
-        JModellerApplication window = new JModellerApplication();
+        ClassDiagramModellerApplication window = new ClassDiagramModellerApplication();
         window.open();
-        System.out.println("Ordinario");
     }
 }

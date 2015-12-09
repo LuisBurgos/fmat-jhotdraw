@@ -3,7 +3,7 @@ package org.fmatjhotdraw.classdiagram.modeller.lines;
 import java.awt.Color;
 
 import org.fmatjhotdraw.classdiagram.modeller.figures.ClassFigure;
-import org.fmatjhotdraw.classdiagram.modeller.JModellerClass;
+import org.fmatjhotdraw.classdiagram.modeller.ClassDiagramModel;
 import org.fmatjhotdraw.figures.ArrowTip;
 import org.fmatjhotdraw.figures.LineConnection;
 import org.fmatjhotdraw.framework.Figure;
@@ -36,8 +36,8 @@ public class InheritanceLineConnection extends LineConnection {
     protected void handleConnect(Figure start, Figure end) {
         super.handleConnect(start, end);
 
-        JModellerClass startClass = ((ClassFigure)start).getModellerClass();
-        JModellerClass endClass = ((ClassFigure)end).getModellerClass();
+        ClassDiagramModel startClass = ((ClassFigure)start).getModellerClass();
+        ClassDiagramModel endClass = ((ClassFigure)end).getModellerClass();
 
         startClass.addSuperclass(endClass);
     }
@@ -50,8 +50,8 @@ public class InheritanceLineConnection extends LineConnection {
     protected void handleDisconnect(Figure start, Figure end) {
         super.handleDisconnect(start, end);
         if ((start != null) && (end!= null)) {
-            JModellerClass startClass = ((ClassFigure)start).getModellerClass();
-            JModellerClass endClass = ((ClassFigure)end).getModellerClass();
+            ClassDiagramModel startClass = ((ClassFigure)start).getModellerClass();
+            ClassDiagramModel endClass = ((ClassFigure)end).getModellerClass();
             startClass.removeSuperclass(endClass);
         }
     }
@@ -67,8 +67,8 @@ public class InheritanceLineConnection extends LineConnection {
      * @return  true, if an inheritance relationship can be established, false otherwise
      */
     public boolean canConnect(Figure start, Figure end) {
-        JModellerClass startClass = ((ClassFigure)start).getModellerClass();
-        JModellerClass endClass = ((ClassFigure)end).getModellerClass();
+        ClassDiagramModel startClass = ((ClassFigure)start).getModellerClass();
+        ClassDiagramModel endClass = ((ClassFigure)end).getModellerClass();
 
         return !endClass.hasInheritanceCycle(startClass);
     }

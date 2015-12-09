@@ -10,7 +10,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
 import org.fmatjhotdraw.classdiagram.modeller.figures.ClassFigure;
-import org.fmatjhotdraw.classdiagram.modeller.JModellerClass;
+import org.fmatjhotdraw.classdiagram.modeller.ClassDiagramModel;
 import org.fmatjhotdraw.figures.ArrowTip;
 import org.fmatjhotdraw.figures.LineConnection;
 import org.fmatjhotdraw.framework.Figure;
@@ -46,8 +46,8 @@ public class AssociationLineConnection extends LineConnection {
      */
     protected void handleConnect(Figure start, Figure end) {
         super.handleConnect(start, end);
-        JModellerClass startClass = ((ClassFigure)start).getModellerClass();
-        JModellerClass endClass = ((ClassFigure)end).getModellerClass();
+        ClassDiagramModel startClass = ((ClassFigure)start).getModellerClass();
+        ClassDiagramModel endClass = ((ClassFigure)end).getModellerClass();
         startClass.addAssociation(endClass);
         endClass.addAssociation(startClass);
     }
@@ -60,8 +60,8 @@ public class AssociationLineConnection extends LineConnection {
     protected void handleDisconnect(Figure start, Figure end) {
         super.handleDisconnect(start, end);
         if ((start != null) && (end!= null)) {
-            JModellerClass startClass = ((ClassFigure)start).getModellerClass();
-            JModellerClass endClass = ((ClassFigure)end).getModellerClass();
+            ClassDiagramModel startClass = ((ClassFigure)start).getModellerClass();
+            ClassDiagramModel endClass = ((ClassFigure)end).getModellerClass();
             startClass.removeAssociation(endClass);
             endClass.removeAssociation(startClass);
         }
@@ -124,14 +124,14 @@ public class AssociationLineConnection extends LineConnection {
                     setUniDirectional(!isUniDirectional());
                     if (isUniDirectional()) {
                         ((JMenuItem)event.getSource()).setText("bi-directional");
-                        JModellerClass startClass = ((ClassFigure)startFigure()).getModellerClass();
-                        JModellerClass endClass = ((ClassFigure)endFigure()).getModellerClass();
+                        ClassDiagramModel startClass = ((ClassFigure)startFigure()).getModellerClass();
+                        ClassDiagramModel endClass = ((ClassFigure)endFigure()).getModellerClass();
                         endClass.addAssociation(startClass);
                     }
                     else {
                         ((JMenuItem)event.getSource()).setText("uni-directional");
-                        JModellerClass startClass = ((ClassFigure)startFigure()).getModellerClass();
-                        JModellerClass endClass = ((ClassFigure)endFigure()).getModellerClass();
+                        ClassDiagramModel startClass = ((ClassFigure)startFigure()).getModellerClass();
+                        ClassDiagramModel endClass = ((ClassFigure)endFigure()).getModellerClass();
                         endClass.removeAssociation(startClass);
                     }
                 }

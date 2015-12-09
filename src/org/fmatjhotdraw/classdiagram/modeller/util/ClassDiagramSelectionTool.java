@@ -10,19 +10,19 @@ import org.fmatjhotdraw.framework.Figure;
 
 public class ClassDiagramSelectionTool extends CustomSelectionTool {
 
-    /**
-     * TextTool which will be invoked at the top level container.
-     */
-    private TextTool myTextTool;
+    private TextTool mTextTool;
     
     public ClassDiagramSelectionTool(DrawingEditor newEditor) {
         super(newEditor);
         setTextTool(new TextTool(newEditor, new TextFigure()));
     }
-    
+
     /**
      * Hook method which can be overriden by subclasses to provide
      * specialised behaviour in the event of a mouse double click.
+     * @param e
+     * @param x
+     * @param y
      */
     protected void handleMouseDoubleClick(MouseEvent e, int x, int y) {
         Figure figure = drawing().findFigureInside(e.getX(), e.getY());
@@ -58,7 +58,7 @@ public class ClassDiagramSelectionTool extends CustomSelectionTool {
      * @param newTextTool delegate text tool
      */
     protected void setTextTool(TextTool newTextTool) {
-        myTextTool = newTextTool;
+        mTextTool = newTextTool;
     }
 
     /**
@@ -66,8 +66,8 @@ public class ClassDiagramSelectionTool extends CustomSelectionTool {
      * all figures upon which this selection tool operates.
      *
      * @return delegate text tool
-     */    
+     */
     protected TextTool getTextTool() {
-       return myTextTool;
+       return mTextTool;
     }
 }

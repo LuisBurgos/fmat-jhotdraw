@@ -11,13 +11,10 @@ import org.fmatjhotdraw.util.StorableOutput;
 /**
  * An AggregationDecoration draws a diamond at the starting ClassFigure
  * of a AssociationLineConnection to indicate that the starting ClassFigure
- * is an agregration of the end ClassFigure
+ * is an aggregation of the end ClassFigure
  */
 public class AggregationDecoration extends AbstractLineDecoration {
 
-    /**
-     * Size of the diamond (measured as a diagonal line)
-     */
     private int     mySize;
 
     static final long serialVersionUID = 5949131894547260707L;

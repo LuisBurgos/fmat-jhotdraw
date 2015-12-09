@@ -1,17 +1,10 @@
 package org.fmatjhotdraw.classdiagram.generators.figuregenerator;
 
-import org.fmatjhotdraw.application.DrawApplication;
-import org.fmatjhotdraw.classdiagram.modeller.JModellerClass;
 import org.fmatjhotdraw.classdiagram.modeller.figures.ClassFigure;
 import org.fmatjhotdraw.framework.DrawingEditor;
-import org.fmatjhotdraw.framework.DrawingView;
-import org.fmatjhotdraw.framework.Figure;
-import org.fmatjhotdraw.framework.FigureEnumeration;
 import org.fmatjhotdraw.standard.AbstractCommand;
-import org.fmatjhotdraw.standard.StandardDrawing;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * Created by luisburgos on 8/12/15.
