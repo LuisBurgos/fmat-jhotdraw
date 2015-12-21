@@ -1,4 +1,4 @@
-package org.fmatjhotdraw.classdiagram.generator;
+package org.fmatjhotdraw.classdiagram.generators.javagenerator;
 
 import com.sun.codemodel.JCodeModel;
 

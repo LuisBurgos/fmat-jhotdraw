@@ -1,7 +1,7 @@
-package org.fmatjhotdraw.classdiagram.generator;
+package org.fmatjhotdraw.classdiagram.generators.javagenerator;
 
 import com.sun.codemodel.*;
-import org.fmatjhotdraw.classdiagram.modeller.JModellerClass;
+import org.fmatjhotdraw.classdiagram.modeller.ClassDiagramModel;
 
 import java.util.Iterator;
 
@@ -49,12 +49,12 @@ public class JavaElementConverter {
     }
 
     private void addMethod(String currentMethod) {
-        methodHolder = definedClass.method(JMod.PUBLIC, int.class, currentMethod);
+        methodHolder = definedClass.method(JMod.PUBLIC, void.class, currentMethod);
     }
 
     public void addDependencies(Iterator dependClasses) {
         while (dependClasses.hasNext()) {
-            String currentDependencie = ((JModellerClass)dependClasses.next()).getName();
+            String currentDependencie = ((ClassDiagramModel)dependClasses.next()).getName();
             logClasElement("dependency", currentDependencie);
             addDependencie(currentDependencie);
         }
@@ -66,7 +66,7 @@ public class JavaElementConverter {
 
     public void addSuperclass(Iterator superclasses) throws JClassAlreadyExistsException {
         while (superclasses.hasNext()) {
-            String superclassName = ((JModellerClass)superclasses.next()).getName();
+            String superclassName = ((ClassDiagramModel)superclasses.next()).getName();
             logClasElement("super", superclassName);
             JDefinedClass definedSuperclass = model._class(
                     JavaClassesGenerator.packageName + superclassName,
@@ -78,7 +78,7 @@ public class JavaElementConverter {
 
     public void addAssociations(Iterator associatedClasses) {
         while (associatedClasses.hasNext()) {
-            logClasElement("association", ((JModellerClass)associatedClasses.next()).getName());
+            logClasElement("association", ((ClassDiagramModel)associatedClasses.next()).getName());
         }
     }
 

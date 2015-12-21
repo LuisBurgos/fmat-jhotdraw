@@ -1,9 +1,4 @@
-package org.fmatjhotdraw.classdiagram.modeller.figures; /**
- * JModeller
- *
- * @version 1.0     15.01.2001
- * @author Wolfram Kaiser (�2001)
- */
+package org.fmatjhotdraw.classdiagram.modeller.figures;
 
 import java.awt.Font;
 import java.awt.Insets;
@@ -12,11 +7,12 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 import javax.swing.AbstractAction;
 import javax.swing.JPopupMenu;
 
-import org.fmatjhotdraw.classdiagram.modeller.JModellerClass;
+import org.fmatjhotdraw.classdiagram.modeller.ClassDiagramModel;
 import org.fmatjhotdraw.contrib.GraphicalCompositeFigure;
 import org.fmatjhotdraw.figures.RectangleFigure;
 import org.fmatjhotdraw.figures.TextFigure;
@@ -30,89 +26,35 @@ import org.fmatjhotdraw.util.CollectionsFactory;
 import org.fmatjhotdraw.util.StorableInput;
 import org.fmatjhotdraw.util.StorableOutput;
 
-/**
- * A ClassFigure is a graphical representation for a class
- * in a class diagramm. A ClassFigure separates the graphical
- * representation from the data model. A class has a class
- * name, attributes and methods. Accordingly, a ClassFigure 
- * consists of other parts to edit the class names, attributes
- * and methods respectively.
- *
- * @author Wolfram Kaiser
- */
 public class ClassFigure extends GraphicalCompositeFigure {
 
-    /**
-     * Class in the model which is represented by this figure graphically
-     */
-    private JModellerClass myClass;
-
-    /**
-     * Font used for attribute names
-     */
-    private Font            attributeFont;
-
-    /**
-     * Font used for method names
-     */
-    private Font            methodFont;
-
-    /**
-     * Direct reference to a composite figure which stores text figures for attribute names.
-     * This figure is also part of this composite container.
-     */
-    private GraphicalCompositeFigure    myAttributesFigure;
-
-    /**
-     * Direct reference to a composite figure which stores text figures for method names.
-     * This figure is also part of this composite container.
-     */
-    private GraphicalCompositeFigure    myMethodsFigure;
-
-    /**
-     * TextFigure for editing the class name
-     */
+    private final String DEFAULT_METHOD_NAME = "method";
+    private final String DEFAULT_ATTR_NAME = "attribute";
+    private ClassDiagramModel myClass;
+    private Font attributeFont;
+    private Font methodFont;
+    private GraphicalCompositeFigure myAttributesFigure;
+    private GraphicalCompositeFigure myMethodsFigure;
     private TextFigure myClassNameFigure;
+    private final static Font CLASSNAME_FONT = new Font("Helvetica", Font.BOLD, 12);
+    private final static Font DEFAULT_FONT = new Font("Helvetica", Font.PLAIN, 12);
 
-    /**
-     * Default Font for classname.
-     */
-    private final static Font CLASSNAME_FONT = new Font( "Helvetica", Font.BOLD, 12 );
-
-    /**
-     * Default Font for attribut and operations.
-     */
-    private final static Font DEFAULT_FONT   = new Font( "Helvetica", Font.PLAIN, 12 );
-
-    /**
-     * Some insets.
-     */
-    private final static Insets INSETS0400 = new Insets( 0, 4, 0, 0 );
-
-    private final static Insets INSETS4440 = new Insets( 4, 4, 4, 0 );
-    private final static Insets INSETS4444 = new Insets( 4, 4, 4, 4 );
-
+    private final static Insets INSETS0400 = new Insets(0, 4, 0, 0);
+    private final static Insets INSETS4440 = new Insets(4, 4, 4, 0);
+    private final static Insets INSETS4444 = new Insets(4, 4, 4, 4);
 
     static final long serialVersionUID = 6098176631854387694L;
 
-    /**
-     * Create a new instance of ClassFigure with a RectangleFigure as presentation figure
-     */
     public ClassFigure() {
         this(new RectangleFigure());
     }
 
-    /**
-     * Create a new instance of ClassFigure with a given presentation figure
-     *
-     * @param newPresentationFigure presentation figure
-     */
     public ClassFigure(Figure newPresentationFigure) {
         super(newPresentationFigure);
     }
 
     /**
-     * Hook method called to initizialize a ClassFigure.
+     * Hook method called to initialize a ClassFigure.
      * It is called from the constructors and the clone() method.
      */
     protected void initialize() {
@@ -121,10 +63,13 @@ public class ClassFigure extends GraphicalCompositeFigure {
 
         // set the fonts used to print attributes and methods
         attributeFont = DEFAULT_FONT;
-        methodFont    = DEFAULT_FONT;
+        methodFont = DEFAULT_FONT;
 
-        // create a new Model object associated with this View figure
-        setModellerClass(new JModellerClass());
+
+        if (getModellerClass() == null) {
+            setModellerClass(new ClassDiagramModel());
+
+        }
 
         // create a TextFigure responsible for the class name
         setClassNameFigure(new TextFigure() {
@@ -161,34 +106,16 @@ public class ClassFigure extends GraphicalCompositeFigure {
         super.initialize();
     }
 
-    /**
-     * Factory method to create a popup menu which allows to add attributes and methods.
-     *
-     * @return newly created popup menu
-     */
     protected JPopupMenu createPopupMenu() {
         JPopupMenu popupMenu = new JPopupMenu();
         popupMenu.add(new AbstractAction("add attribute") {
             public void actionPerformed(ActionEvent event) {
-                addAttribute("attribute");
+                addAttribute(DEFAULT_ATTR_NAME);
             }
         });
         popupMenu.add(new AbstractAction("add method") {
             public void actionPerformed(ActionEvent event) {
-                addMethod("method");
-            }
-        });
-
-        popupMenu.add(new AbstractAction("generate java class") {
-            public void actionPerformed(ActionEvent event) {
-                //System.out.println(getModellerClass().toString());
-                /*try {
-                    JavaClassGenerator.generate(getModellerClass());
-                } catch (JClassAlreadyExistsException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }*/
+                addMethod(DEFAULT_METHOD_NAME);
             }
         });
 
@@ -196,171 +123,120 @@ public class ClassFigure extends GraphicalCompositeFigure {
         return popupMenu;
     }
 
-    /**
-     * Set the figure which containes all figures representing attribute names.
-     *
-     * @param newAttributesFigure container for other figures
-     */
     protected void setAttributesFigure(GraphicalCompositeFigure newAttributesFigure) {
         myAttributesFigure = newAttributesFigure;
     }
 
-    /**
-     * Return the figure which containes all figures representing attribute names.
-     *
-     * @return container for other figures
-     */
     public GraphicalCompositeFigure getAttributesFigure() {
         return myAttributesFigure;
     }
 
-    /**
-     * Set the figure which containes all figures representing methods names.
-     *
-     * @param newMethodsFigure container for other figures
-     */
     protected void setMethodsFigure(GraphicalCompositeFigure newMethodsFigure) {
         myMethodsFigure = newMethodsFigure;
     }
 
-    /**
-     * Return the figure which containes all figures representing method names.
-     *
-     * @return container for other figures
-     */
     public GraphicalCompositeFigure getMethodsFigure() {
         return myMethodsFigure;
     }
 
-    /**
-     * Set the class name text figure responsible for handling user input
-     *
-     * @param newClassNameFigure text figure for the class name
-     */
     protected void setClassNameFigure(TextFigure newClassNameFigure) {
         myClassNameFigure = newClassNameFigure;
     }
 
-    /**
-     * Return the text figure for the class name
-     *
-     * @return text figure for the class name
-     */
     public TextFigure getClassNameFigure() {
         return myClassNameFigure;
     }
 
-    /**
-     * Add a name for an attribute. The underlying class in the model is updated as well.
-     * to hold the attribute name.
-     *
-     * @param newAttribute name of the new attribute
-     */
-    protected void addAttribute(String newAttribute) {
-        getModellerClass().addAttribute(newAttribute);
-        TextFigure classFigureAttribute = new TextFigure() {
-            public void setText(String newString) {
-                if (!getText().equals(newString)) {
-                    getModellerClass().renameAttribute(getText(), newString);
+    //TODO: Needs to be refactor
+    public void addAttribute(String newAttribute) {
+        TextFigure classFigureAttribute;
+        if(!getModellerClass().hasAttribute(newAttribute)
+                && (Objects.equals(newAttribute, DEFAULT_ATTR_NAME))){
+            getModellerClass().addAttribute(newAttribute);
+            classFigureAttribute = new TextFigure() {
+                public void setText(String newString) {
+                    if (!getText().equals(newString)) {
+                        getModellerClass().renameAttribute(getText(), newString);
+                    }
+                    super.setText(newString);
+                    updateAttributeFigure();
                 }
-                super.setText(newString);
-                updateAttributeFigure();
-            }
-        };
+            };
+
+        }else {
+            classFigureAttribute = new TextFigure();
+        }
         classFigureAttribute.setText(newAttribute);
         classFigureAttribute.setFont(attributeFont);
         getAttributesFigure().add(classFigureAttribute);
         updateAttributeFigure();
+        return;
     }
 
-    /**
-     * Remove an attribute with a given name. The underlying class in the model is updated
-     * as well to exclude the attribute name.
-     *
-     * @param oldAttribute name of the attribute to be removed.
-     */
     protected void removeAttribute(Figure oldAttribute) {
         getModellerClass().removeAttribute(((TextFigure)oldAttribute).getText());
         getAttributesFigure().remove(oldAttribute);
         updateAttributeFigure();
     }
 
-    /**
-     * Update the attribute figure and the ClassFigure itself as well. This causes calculating
-     * the layout of contained figures.
-     */
     protected void updateAttributeFigure() {
         getAttributesFigure().update();
         update();
     }
 
-    /**
-     * Add a name for a method. The underlying class in the model is updated as well
-     * to hold the method name.
-     *
-     * @param newMethod name of the new method
-     */
-    protected void addMethod(String newMethod) {
-        getModellerClass().addMethod(newMethod);
-        TextFigure classFigureMethod = new TextFigure() {
-            public void setText(String newString) {
-                if (!getText().equals(newString)) {
-                    getModellerClass().renameMethod(getText(), newString);
+    public void addMethod(String newMethod) {
+        TextFigure classFigureMethod;
+        if(!getModellerClass().hasMethod(newMethod)
+                && (Objects.equals(newMethod, DEFAULT_METHOD_NAME))){
+            getModellerClass().addMethod(newMethod);
+            classFigureMethod = new TextFigure() {
+                public void setText(String newString) {
+                    if (!getText().equals(newString)) {
+                        getModellerClass().renameMethod(getText(), newString);
+                    }
+                    super.setText(newString);
+                    updateMethodFigure();
                 }
-                super.setText(newString);
-                updateMethodFigure();
-            }
-        };
+            };
+        }else {
+            classFigureMethod = new TextFigure();
+        }
         classFigureMethod.setText(newMethod);
         classFigureMethod.setFont(methodFont);
         getMethodsFigure().add(classFigureMethod);
         updateMethodFigure();
     }
 
-    /**
-     * Remove an method with a given name. The underlying class in the model is updated
-     * as well to exclude the method name.
-     *
-     * @param oldMethod name of the method to be removed.
-     */
     protected void removeMethod(Figure oldMethod) {
         getModellerClass().removeMethod(((TextFigure)oldMethod).getText());
         getMethodsFigure().remove(oldMethod);
         updateMethodFigure();
     }
 
-    /**
-     * Update the method figure and the ClassFigure itself as well. This causes calculating
-     * the layout of contained figures.
-     */
     protected void updateMethodFigure() {
         getMethodsFigure().update();
         update();
     }
 
-    /**
-     * Set the class in the model which should be represented by this ClassFigure
-     *
-     * @param newClass class in the model
-     */
-    protected void setModellerClass(JModellerClass newClass) {
+    protected void setModellerClass(ClassDiagramModel newClass) {
         myClass = newClass;
     }
 
-    /**
-     * Return the class from the model which is represented by this ClassFigure
-     *
-     * @return class from the model
-     */
-    public JModellerClass getModellerClass() {
+    public ClassDiagramModel getModellerClass() {
         return myClass;
     }
 
-    /**
-     * Propagate the removeFromDrawing request up to the container.
-     * A ClassFigure should not be removed just because one of its childern
-     * is removed.
-     */
+    public void updateModellerClass(ClassDiagramModel newModeller){
+        setModellerClass(newModeller);
+        //initialize();
+        updateComponents();
+        update();
+    }
+
+    private void updateComponents() {
+        updateClassNameFigure(getModellerClass().getName());
+    }
+
     public void figureRequestRemove(FigureChangeEvent e) {
         Figure removeFigure = e.getFigure();
         if (getAttributesFigure().includes(removeFigure)) {
@@ -375,9 +251,6 @@ public class ClassFigure extends GraphicalCompositeFigure {
         }
     }
 
-    /**
-     * Return default handles on all four edges for this figure.
-     */
     public HandleEnumeration handles() {
         /*List handles = CollectionsFactory.current().createList(4);
 
@@ -392,19 +265,10 @@ public class ClassFigure extends GraphicalCompositeFigure {
         return new HandleEnumerator(handles);
     }
 
-    /**
-     * Test whether this figure has child figures.
-     *
-     * @return true, if there are no child figures, false otherwise
-     */
     public boolean isEmpty() {
         return figureCount() == 0;
     }
 
-    /**
-     * Read the figure and its contained elements from the StorableOutput and sets
-     * the presentation figure and creates the popup menu.
-     */
     public void read(StorableInput dr) throws IOException {
         getClassNameFigure().setText(dr.readString());
 

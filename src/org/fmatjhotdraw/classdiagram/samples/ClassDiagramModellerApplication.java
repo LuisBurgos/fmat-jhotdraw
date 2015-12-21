@@ -1,9 +1,4 @@
-package org.fmatjhotdraw.classdiagram.modeller; /**
- * JModeller
- *
- * @version 1.1     25.02.2002
- * @author Wolfram Kaiser (�2002)
- */
+package org.fmatjhotdraw.classdiagram.samples;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -15,10 +10,11 @@ import javax.swing.JMenuBar;
 import javax.swing.JToolBar;
 
 import org.fmatjhotdraw.application.DrawApplication;
-import org.fmatjhotdraw.classdiagram.generator.GeneratorCommand;
+import org.fmatjhotdraw.classdiagram.generators.figuregenerator.FigureGeneratorCommand;
+import org.fmatjhotdraw.classdiagram.generators.javagenerator.JavaGeneratorCommand;
 import org.fmatjhotdraw.classdiagram.modeller.figures.ClassFigure;
 import org.fmatjhotdraw.classdiagram.modeller.lines.*;
-import org.fmatjhotdraw.classdiagram.modeller.util.DelegationSelectionTool;
+import org.fmatjhotdraw.classdiagram.modeller.util.ClassDiagramSelectionTool;
 import org.fmatjhotdraw.figures.ConnectedTextTool;
 import org.fmatjhotdraw.figures.TextFigure;
 import org.fmatjhotdraw.framework.*;
@@ -28,28 +24,12 @@ import org.fmatjhotdraw.standard.ToggleGridCommand;
 import org.fmatjhotdraw.util.CommandMenu;
 import org.fmatjhotdraw.util.UndoableTool;
 
-/**
- * This is the main class to start the JModeller application. The actual main() method
- * is already defined in CH.ifa.draw.application.DrawApplication
- *
- */
-public class JModellerApplication extends DrawApplication {
+public class ClassDiagramModellerApplication extends DrawApplication {
 
-    /**
-     * Create a new instance of JModellerApplication
-     */
-    public JModellerApplication() {
-        super("JModeller - Class Diagram Editor");
+    public ClassDiagramModellerApplication() {
+        super("Class Diagram Editor");
     }
 
-    /**
-     * Create the tools for the toolbar. The tools are
-     * a selection tool, a tool to create a new class and
-     * two tools to create association and inheritance
-     * relationships between classes.
-     *
-     * @param   palette toolbar to which the tools should be added
-     */
     protected void createTools(JToolBar palette) {
         super.createTools(palette);
 
@@ -80,44 +60,26 @@ public class JModellerApplication extends DrawApplication {
         palette.add(createToolButton(IMAGES+"INHERITANCE", "Inheritance Tool", tool));
     }
 
-    /**
-     * Create a special selection tool which reacts on the right mouse button
-     * to show a popup menu.
-     *
-     * @return  selection tool with special behaviour for the right mouse button
-     */
     protected Tool createSelectionTool() {
-        return new DelegationSelectionTool(this);
+        return new ClassDiagramSelectionTool(this);
     }
 
-    /**
-     * Create the menues for a given menu bar.
-     *
-     * @param   mb  menu bar to which the menus should be added
-     */
     protected void createMenus(JMenuBar mb) {
         mb.add(createFileMenu());
         mb.add(createEditMenu());
-        mb.add(createAlignmentMenu());
-        mb.add(createAttributesMenu());
-        mb.add(createLookAndFeelMenu());
-        mb.add(createGenerateJavaClassesMenu());
+        //mb.add(createAlignmentMenu());
+        //mb.add(createAttributesMenu());
+        //mb.add(createLookAndFeelMenu());
+        mb.add(createGeneratorsMenu());
     }
 
-    private JMenu createGenerateJavaClassesMenu() {
-        CommandMenu menu = new CommandMenu("Class Generator");
-        menu.add(new GeneratorCommand("Generate java", this));
+    private JMenu createGeneratorsMenu() {
+        CommandMenu menu = new CommandMenu("Generators");
+        menu.add(new JavaGeneratorCommand("Generate java", this));
+        menu.add(new FigureGeneratorCommand("Generate class diagram", this));
         return menu;
     }
 
-    /**
-     * Create an attribute menu hiding some special menu entries from
-     * the superclass. The attribute menu contains actions which can be
-     * performed if a figure is selected in a drawing. For this figure
-     * some attributes can be set such as fill and pen colour.
-     *
-     *  @return newly create attribute menu
-     */
     protected JMenu createAttributesMenu() {
         JMenu menu = new JMenu("Attributes");
         menu.add(createColorMenu("Fill Color", FigureAttributeConstant.FILL_COLOR));
@@ -125,26 +87,12 @@ public class JModellerApplication extends DrawApplication {
         return menu;
     }
 
-    /**
-     * Create an alignment menu hiding some special menu entries from
-     * the superclass. The alignment menu contains actions for aligning
-     * figures within the drawing in this case to arrange them in a grid
-     * or not.
-     *
-     * @return  newly created alignment menu
-     */
     protected JMenu createAlignmentMenu() {
         CommandMenu menu = new CommandMenu("Align");
         menu.add(new ToggleGridCommand("Toggle Snap to Grid", this, new Point(4,4)));
         return menu;
     }
 
-    /**
-     * Create an internal window menu, so several drawing cans be manipulated
-     * at the same time.
-     *
-     * @return  newly created alignment menu
-     */
     protected JMenu createFileMenu() {
         JMenu menu = super.createFileMenu();
         menu.insert(
@@ -159,24 +107,14 @@ public class JModellerApplication extends DrawApplication {
         return menu;
     }
 
-    /**
-     * Creates the drawing view used in this application.
-     * You need to override this method to use a DrawingView
-     * subclass in your application. By default a standard
-     * DrawingView is returned.
-     */
     protected DrawingView createDrawingView() {
         DrawingView newView = super.createDrawingView();
         newView.setBackground(Color.white);
         return newView;
     }
 
-    /**
-     * Start the application by creating an instance and open
-     * the editor window.
-     */
     public static void main(String[] args) {
-        JModellerApplication window = new JModellerApplication();
+        ClassDiagramModellerApplication window = new ClassDiagramModellerApplication();
         window.open();
     }
 }

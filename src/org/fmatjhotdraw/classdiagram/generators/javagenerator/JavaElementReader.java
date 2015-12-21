@@ -1,15 +1,12 @@
-package org.fmatjhotdraw.classdiagram.generator;
+package org.fmatjhotdraw.classdiagram.generators.javagenerator;
 
 import com.sun.codemodel.JClassAlreadyExistsException;
 import com.sun.codemodel.JCodeModel;
-import org.fmatjhotdraw.classdiagram.modeller.JModellerClass;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
-
-import static org.fmatjhotdraw.classdiagram.generator.JavaElement.CLASSNAME;
 
 /**
  * Created by luisburgos on 7/12/15.

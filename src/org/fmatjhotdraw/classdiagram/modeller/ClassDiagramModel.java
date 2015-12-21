@@ -8,7 +8,7 @@ import java.io.Serializable;
  * and has attributes and methods and keeps track of its superclasses, associations
  * and dependencies.
  */
-public class JModellerClass implements Serializable {
+public class ClassDiagramModel implements Serializable {
 
     private static final String DEFAULT_CLASS_NAME = "Class";
     private String myName;
@@ -20,11 +20,11 @@ public class JModellerClass implements Serializable {
 
     static final long serialVersionUID = -3748332488864682801L;
 
-    public JModellerClass() {
+    public ClassDiagramModel() {
         this(DEFAULT_CLASS_NAME);
     }
 
-    public JModellerClass(String newClassName) {
+    public ClassDiagramModel(String newClassName) {
         setName(newClassName);
         myAttributes = new Vector();
         myMethods = new Vector();
@@ -59,6 +59,14 @@ public class JModellerClass implements Serializable {
 
     public Iterator getAttributes() {
         return myAttributes.iterator();
+    }
+
+    public Vector getVectorAttributes() {
+        return myAttributes;
+    }
+
+    public Vector getVectorMethods() {
+        return myMethods;
     }
 
     public int getNumberOfAttributes() {
@@ -97,15 +105,15 @@ public class JModellerClass implements Serializable {
         return myMethods.contains(checkMethodName);
     }
 
-    public void addAssociation(JModellerClass newAssociatedClass) {
+    public void addAssociation(ClassDiagramModel newAssociatedClass) {
         myAssociatedClasses.add(newAssociatedClass);
     }
 
-    public void removeAssociation(JModellerClass oldAssociatedClass) {
+    public void removeAssociation(ClassDiagramModel oldAssociatedClass) {
         myAssociatedClasses.remove(oldAssociatedClass);
     }
 
-    public boolean hasAssociation(JModellerClass checkAssociatedClass) {
+    public boolean hasAssociation(ClassDiagramModel checkAssociatedClass) {
         return myAssociatedClasses.contains(checkAssociatedClass);
     }
 
@@ -113,11 +121,11 @@ public class JModellerClass implements Serializable {
         return myAssociatedClasses.iterator();
     }
 
-    public void addSuperclass(JModellerClass newSuperclass) {
+    public void addSuperclass(ClassDiagramModel newSuperclass) {
         mySuperclasses.add(newSuperclass);
     }
     
-    public void removeSuperclass(JModellerClass oldSuperclass) {
+    public void removeSuperclass(ClassDiagramModel oldSuperclass) {
         mySuperclasses.remove(oldSuperclass);
     }
 
@@ -133,7 +141,7 @@ public class JModellerClass implements Serializable {
      *
      * @param   possibleSuperclass  class to which should
      */
-    public boolean hasInheritanceCycle(JModellerClass possibleSubclass) {
+    public boolean hasInheritanceCycle(ClassDiagramModel possibleSubclass) {
         if (possibleSubclass == this) {
             return true;
         }
@@ -147,7 +155,7 @@ public class JModellerClass implements Serializable {
      *
      * @param   possibleSubclass    class which should be subclass to this class or its superclasses
      */
-    public boolean isSuperclass(JModellerClass possibleSubclass) {
+    public boolean isSuperclass(ClassDiagramModel possibleSubclass) {
         if (possibleSubclass.mySuperclasses.contains(this)) {
             return true;
         }
@@ -155,7 +163,7 @@ public class JModellerClass implements Serializable {
         Iterator i = possibleSubclass.getSuperclasses();
         while (i.hasNext()) {
             Object currentObject = i.next();
-            if (isSuperclass((JModellerClass) currentObject)) {
+            if (isSuperclass((ClassDiagramModel) currentObject)) {
                 return true;
             }
         }
@@ -163,15 +171,15 @@ public class JModellerClass implements Serializable {
         return false;
     }
 
-    public void addDependency(JModellerClass newDependency) {
+    public void addDependency(ClassDiagramModel newDependency) {
         myDependClasses.add(newDependency);
     }
     
-    public void removeDependency(JModellerClass oldDependency) {
+    public void removeDependency(ClassDiagramModel oldDependency) {
         myDependClasses.remove(oldDependency);
     }
     
-    public boolean hasDependency(JModellerClass checkDependency) {
+    public boolean hasDependency(ClassDiagramModel checkDependency) {
         return myDependClasses.contains(checkDependency);
     }
     
